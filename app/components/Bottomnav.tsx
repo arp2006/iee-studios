@@ -1,58 +1,76 @@
 "use client"
 
 import { useState, useRef } from "react";
+import { usePathname } from "next/navigation";
 
 const links = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Calendly", href: "https://calendly.com/iee-studios/30-mins-meeting" },
+  {
+    label: "Calendly",
+    href: "https://calendly.com/iee-studios/30-mins-meeting",
+  },
 ];
 
 const EMAIL = "hello@ieestudios.com";
 const LOGO_W = 42;
 const CONTACT_W = 80;
 const CONTACT_EXPANDED = 260;
+
 const ease = "cubic-bezier(0.4, 0, 0.2, 1)";
 const DURATION = 700;
 
 export default function BottomNav() {
-  const [active, setActive] = useState<string | null>(null);
+  const pathname = usePathname();
+
   const [logoHovered, setLogoHovered] = useState(false);
   const [contactHovered, setContactHovered] = useState(false);
   const [copied, setCopied] = useState(false);
+
   const logoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const contactEnterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+
   const onLogoEnter = () => {
     logoTimer.current = setTimeout(() => setLogoHovered(true), 200);
   };
+
   const onLogoLeave = () => {
     if (logoTimer.current) clearTimeout(logoTimer.current);
     setLogoHovered(false);
   };
 
-  const [hoveredLink, setHoveredLink] = useState<string | null>(null);
-
   const onContactEnter = () => {
     if (leaveTimer.current) clearTimeout(leaveTimer.current);
-    contactEnterTimer.current = setTimeout(() => setContactHovered(true), 200);
+
+    contactEnterTimer.current = setTimeout(() => {
+      setContactHovered(true);
+    }, 200);
   };
+
   const onContactLeave = () => {
-    if (contactEnterTimer.current) clearTimeout(contactEnterTimer.current);
-    leaveTimer.current = setTimeout(() => setContactHovered(false), 120);
+    if (contactEnterTimer.current)
+      clearTimeout(contactEnterTimer.current);
+
+    leaveTimer.current = setTimeout(() => {
+      setContactHovered(false);
+    }, 120);
   };
 
   const handleCopy = () => {
     navigator.clipboard.writeText(EMAIL);
+
     setCopied(true);
+
     setTimeout(() => setCopied(false), 2000);
   };
 
   return (
     <nav className="fixed bottom-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4">
 
-      {/* ── Logo dot ── */}
+      {/* LOGO */}
       <div
         onMouseEnter={onLogoEnter}
         onMouseLeave={onLogoLeave}
@@ -67,58 +85,85 @@ export default function BottomNav() {
           className="text-amber-900 font-semibold text-sm whitespace-nowrap"
           style={{
             opacity: logoHovered ? 1 : 0,
-            transition: logoHovered ? "opacity 200ms ease 200ms" : "opacity 150ms ease",
+            transition: logoHovered
+              ? "opacity 200ms ease 200ms"
+              : "opacity 150ms ease",
           }}
         >
           iee studios
         </span>
       </div>
 
-      {/* ── Nav links pill ── */}
-      <div className="flex items-center bg-white rounded-full shrink-0 shadow-sm" style={{ height: 40, padding: "0 6px" }}>
+      {/* NAV LINKS */}
+      <div
+        className="flex items-center bg-white rounded-full shrink-0 shadow-sm"
+        style={{
+          height: 40,
+          padding: "0 6px",
+        }}
+      >
         {links.map(({ label, href }) => {
           const isHovered = hoveredLink === label;
-          const isActive = active === label;
+
+          const isActive =
+            pathname === href ||
+            (href !== "/" && pathname.startsWith(href));
+
           return (
             <a
               key={label}
               href={href}
               target={label === "Calendly" ? "_blank" : undefined}
-              rel={label === "Calendly" ? "noopener noreferrer" : undefined}
-              onClick={() => setActive(label)}
+              rel={
+                label === "Calendly"
+                  ? "noopener noreferrer"
+                  : undefined
+              }
               onMouseEnter={() => setHoveredLink(label)}
               onMouseLeave={() => setHoveredLink(null)}
               className="relative text-sm whitespace-nowrap no-underline flex items-center justify-center"
               style={{
                 padding: "6px 20px",
-                color: isActive || isHovered ? "#171717" : "#a3a3a3",
+                color: isActive
+                  ? "#ffffff"
+                  : isHovered
+                  ? "#171717"
+                  : "#a3a3a3",
                 transition: "color 200ms ease",
               }}
             >
-              {/* expanding bg pill */}
+              {/* expanding bg */}
               <span
                 aria-hidden="true"
                 className="absolute inset-0 rounded-full"
                 style={{
-                  background: "#f5f5f5",
-                  transform: isHovered || isActive ? "scale(1)" : "scale(0)",
+                  background: isActive ? "#171717" : "#f5f5f5",
+                  transform:
+                    isHovered || isActive
+                      ? "scale(1)"
+                      : "scale(0)",
                   transformOrigin: "center",
                   transition: `transform ${DURATION}ms ${ease}`,
                 }}
               />
-              <span className="relative z-10">{label}</span>
+
+              <span className="relative z-10">
+                {label}
+              </span>
             </a>
           );
         })}
       </div>
 
-      {/* ── Contact ── */}
+      {/* CONTACT */}
       <div
         onMouseEnter={onContactEnter}
         onMouseLeave={onContactLeave}
         className="relative shrink-0"
         style={{
-          width: contactHovered ? CONTACT_EXPANDED : CONTACT_W,
+          width: contactHovered
+            ? CONTACT_EXPANDED
+            : CONTACT_W,
           height: 40,
           transition: `width ${DURATION}ms ${ease}`,
         }}
@@ -126,13 +171,17 @@ export default function BottomNav() {
         <div
           className="absolute right-0 top-0 flex items-center overflow-hidden rounded-full cursor-pointer"
           style={{
-            width: contactHovered ? CONTACT_EXPANDED : CONTACT_W,
+            width: contactHovered
+              ? CONTACT_EXPANDED
+              : CONTACT_W,
             height: 40,
-            background: contactHovered ? "#FACC15" : "#171717",
+            background: contactHovered
+              ? "#FACC15"
+              : "#171717",
             transition: `width ${DURATION}ms ${ease}, background ${DURATION}ms ease`,
           }}
         >
-          {/* "Contact" label */}
+          {/* CONTACT LABEL */}
           <span
             className="absolute inset-0 flex items-center justify-center text-sm font-medium text-white whitespace-nowrap pointer-events-none"
             style={{
@@ -143,22 +192,28 @@ export default function BottomNav() {
             Contact
           </span>
 
-          {/* Email + Copy */}
+          {/* EMAIL */}
           <div
             className="flex items-center w-full gap-2"
             style={{
               padding: "0 12px",
               opacity: contactHovered ? 1 : 0,
-              transition: contactHovered ? "opacity 160ms ease 160ms" : "opacity 80ms ease",
+              transition: contactHovered
+                ? "opacity 160ms ease 160ms"
+                : "opacity 80ms ease",
             }}
           >
             <span className="text-amber-900 text-sm font-medium flex-1 pl-1 whitespace-nowrap overflow-hidden text-ellipsis">
               {EMAIL}
             </span>
+
             <button
               onClick={handleCopy}
               className="bg-white text-amber-900 text-xs font-semibold rounded-full shrink-0 cursor-pointer hover:bg-amber-50 transition-colors duration-100"
-              style={{ padding: "6px 12px", border: "none" }}
+              style={{
+                padding: "6px 12px",
+                border: "none",
+              }}
             >
               {copied ? "Copied!" : "Copy"}
             </button>

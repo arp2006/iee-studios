@@ -1,3 +1,6 @@
+import Bottomnav from "../components/Bottomnav";
+import Footer from "../components/Footer";
+
 export default function AboutPage() {
   const capabilities = [
     "Creative Direction",
@@ -26,7 +29,8 @@ export default function AboutPage() {
 
   return (
     <main className="bg-white text-black min-h-screen">
-      
+      <Bottomnav />
+
       {/* HERO + IMAGE */}
       <section className="min-h-screen w-full flex items-center justify-center bg-white px-6 md:px-12 lg:px-24 py-24">
         <div className={`${containerClass} flex flex-col justify-between gap-16`}>
@@ -45,11 +49,12 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className="w-[75%] aspect-[16/9] overflow-hidden rounded-[32px] bg-neutral-200 flex items-center justify-center">
+          {/* PLACEHOLDER IMAGE */}
+          <section className="w-full h-[70vh] bg-neutral-200 flex items-center justify-center overflow-hidden">
             <p className="text-black/20 text-[10px] uppercase tracking-[0.25em]">
               Placeholder Visual
             </p>
-          </div>
+          </section>
 
         </div>
       </section>
@@ -151,6 +156,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }
