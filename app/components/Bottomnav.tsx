@@ -3,9 +3,9 @@
 import { useState, useRef } from "react";
 
 const links = [
-  { label: "Projects", href: "/projects" },
-  { label: "Practices", href: "/practices" },
   { label: "About", href: "/about" },
+  { label: "Projects", href: "/projects" },
+  { label: "Calendly", href: "https://calendly.com/iee-studios/30-mins-meeting" },
 ];
 
 const EMAIL = "hello@ieestudios.com";
@@ -83,6 +83,8 @@ export default function BottomNav() {
             <a
               key={label}
               href={href}
+              target={label === "Calendly" ? "_blank" : undefined}
+              rel={label === "Calendly" ? "noopener noreferrer" : undefined}
               onClick={() => setActive(label)}
               onMouseEnter={() => setHoveredLink(label)}
               onMouseLeave={() => setHoveredLink(null)}
