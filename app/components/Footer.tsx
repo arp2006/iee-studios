@@ -30,7 +30,7 @@ export default function Footer({
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="text-[clamp(2.2rem,3vw,3.6rem)] font-medium tracking-[-0.03em] text-black/50"
+                className="text-[clamp(2.2rem,3vw,3.6rem)] font-medium tracking-[-0.03em] text-black/100"
               >
                 iee studios
               </motion.h2>

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Studio — Creative Agency",
+  title: "iee studios",
   description: "We craft brands and digital experiences that move people.",
 };
 
