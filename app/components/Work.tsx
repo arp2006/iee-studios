@@ -51,23 +51,11 @@ const projects = [
 
 export default function Work() {
   return (
-    <section className="w-full flex justify-center bg-white">
+    <section className="w-full flex justify-center bg-white py-10">
       <div className="w-full max-w-[1400px]">
 
-        {/* heading */}
-        {/* <div className="flex items-end justify-between mb-20">
-          <div>
-
-            <h2 className="font-display text-[clamp(2.5rem,5vw,5rem)] leading-none tracking-[-0.04em] font-light text-black">
-              Featured
-              <br />
-              Projects
-            </h2>
-          </div>
-        </div> */}
-
         {/* projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
           {projects.map((project) => (
             <div
               key={project.num}

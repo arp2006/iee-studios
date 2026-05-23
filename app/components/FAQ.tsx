@@ -33,47 +33,44 @@ export default function FAQ() {
         {/* layout */}
         <div className="relative w-full min-h-[420px] overflow-hidden">
 
-  {/* questions */}
-  <div
-    className={`absolute top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-      active !== null
-        ? "left-0 w-1/2 text-left"
-        : "left-1/2 -translate-x-1/2 "
-    }`}
-  >
-    {faqs.map((faq, index) => (
-      <button
-        key={faq.question}
-        onClick={() => setActive(index)}
-        className={`group py-6 transition-all duration-300 block w-full text-left ${
-          active === index
-            ? "opacity-100"
-            : "opacity-40 hover:opacity-70"
-        }`}
-      >
-        <h3 className="text-[clamp(1.4rem,2.5vw,2.5rem)] font-light tracking-[-0.04em] text-black">
-          {faq.question}
-        </h3>
-      </button>
-    ))}
-  </div>
+          {/* questions */}
+          <div
+            className={`absolute top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${active !== null
+                ? "left-0 w-1/2 text-left"
+                : "left-1/2 -translate-x-1/2 "
+              }`}
+          >
+            {faqs.map((faq, index) => (
+              <button
+                key={faq.question}
+                onClick={() => setActive(index)}
+                className={`group py-6 transition-all duration-300 block w-full text-left ${active === index
+                    ? "opacity-100"
+                    : "opacity-40 hover:opacity-70"
+                  }`}
+              >
+                <h3 className="text-[clamp(1.4rem,2.5vw,2.5rem)] font-light tracking-[-0.04em] text-black">
+                  {faq.question}
+                </h3>
+              </button>
+            ))}
+          </div>
 
-  {/* answer */}
-  <div
-    className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${
-      active !== null
-        ? "opacity-100 translate-x-0"
-        : "opacity-0 translate-x-24 pointer-events-none"
-    }`}
-  >
-    <div className="max-w-xl">
-      <p className="text-black/70 text-xl leading-relaxed font-light">
-        {active !== null ? faqs[active].answer : ""}
-      </p>
-    </div>
-  </div>
+          {/* answer */}
+          <div
+            className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${active !== null
+                ? "opacity-100 translate-x-0"
+                : "opacity-0 translate-x-24 pointer-events-none"
+              }`}
+          >
+            <div className="max-w-xl">
+              <p className="text-black/70 text-xl leading-relaxed font-light">
+                {active !== null ? faqs[active].answer : ""}
+              </p>
+            </div>
+          </div>
 
-</div>
+        </div>
       </div>
     </section>
   );
