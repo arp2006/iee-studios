@@ -1,28 +1,6 @@
-// const services = [
-//   "Ideation",
-//   "Creative Direction",
-//   "Scripting",
-//   "Moodboards",
-//   "Storyboards",
-//   "Editing",
-//   "Motion Design",
-//   "Sound Engineering",
-// ];
+"use client";
 
-// export default function Services() {
-//   return (
-//     <section className="w-full flex justify-center bg-[#808080] py-32">
-//       <div className="w-full min-h-[50vh] max-w-[1400px]">
-
-//         {/* top */}
-//         will put moving cards here
-//       </div>
-//     </section>
-//   );
-// }
-"use client"
-
-import { useRef, useState } from "react";
+import { useState } from "react";
 
 interface Service {
   icon: string;
@@ -117,83 +95,46 @@ const services: Service[] = [
     tagBg: "#F1EFE8",
   },
 ];
+
 function ServiceCard({ service }: { service: Service }) {
+  const [hovered, setHovered] = useState(false);
+
   return (
     <div
+      className="flex flex-col gap-2.5 p-5 pb-4 rounded-xl bg-white cursor-default select-none transition-all duration-200"
       style={{
         width: 220,
         flexShrink: 0,
-        border: "0.5px solid #e5e3de",
-        borderRadius: 12,
-        background: "white",
-        padding: "1.25rem 1.25rem 1rem",
-        display: "flex",
-        flexDirection: "column",
-        gap: 10,
-        transition: "border-color 0.2s, transform 0.2s",
-        cursor: "default",
+        border: hovered ? "0.5px solid #b0aca5" : "0.5px solid #e5e3de",
+        transform: hovered ? "translateY(-3px)" : "translateY(0)",
         boxSizing: "border-box",
       }}
-      onMouseEnter={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#b0aca5";
-        (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)";
-      }}
-      onMouseLeave={(e) => {
-        (e.currentTarget as HTMLDivElement).style.borderColor = "#e5e3de";
-        (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)";
-      }}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
     >
+      {/* Icon */}
       <div
-        style={{
-          width: 38,
-          height: 38,
-          borderRadius: 8,
-          background: service.bgColor,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          fontSize: 18,
-          color: service.iconColor,
-          fontWeight: 500,
-        }}
+        className="flex items-center justify-center w-9 h-9 rounded-lg text-lg font-medium"
+        style={{ background: service.bgColor, color: service.iconColor }}
         aria-hidden
       >
         {service.icon}
       </div>
 
-      <p
-        style={{
-          fontSize: 14,
-          fontWeight: 500,
-          color: "#1a1918",
-          margin: 0,
-        }}
-      >
+      {/* Label */}
+      <p className="text-sm font-medium text-[#1a1918] m-0">
         {service.label}
       </p>
 
-      <p
-        style={{
-          fontSize: 12,
-          color: "#6b6965",
-          margin: 0,
-          lineHeight: 1.6,
-          flex: 1,
-        }}
-      >
+      {/* Description */}
+      <p className="text-xs text-[#6b6965] m-0 leading-relaxed flex-1">
         {service.desc}
       </p>
 
+      {/* Tag */}
       <span
-        style={{
-          display: "inline-block",
-          fontSize: 11,
-          padding: "2px 8px",
-          borderRadius: 8,
-          background: service.tagBg,
-          color: service.tagColor,
-          width: "fit-content",
-        }}
+        className="text-[11px] px-2 py-0.5 rounded-lg w-fit"
+        style={{ background: service.tagBg, color: service.tagColor }}
       >
         {service.tag}
       </span>
@@ -206,61 +147,41 @@ export default function ServicesCarousel() {
   const doubled = [...services, ...services];
 
   return (
-    <section aria-label="Services offered" style={{ padding: "2rem 0", background: "#ffff" }}>
+    <section
+      aria-label="Services offered"
+      className="w-full flex justify-center bg-[#808080] py-32"
+    >
+      <div className="w-full min-h-[50vh] max-w-[1400px]">
+        {/* Carousel */}
+        <div className="overflow-hidden relative">
+          {/* Fade left */}
+          <div
+            aria-hidden
+            className="absolute top-0 left-0 bottom-0 w-20 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to right, #808080, transparent)" }}
+          />
 
+          {/* Fade right */}
+          <div
+            aria-hidden
+            className="absolute top-0 right-0 bottom-0 w-20 z-10 pointer-events-none"
+            style={{ background: "linear-gradient(to left, #808080, transparent)" }}
+          />
 
-      {/* Carousel */}
-      <div
-        style={{
-          overflow: "hidden",
-          position: "relative",
-        }}
-      >
-        {/* Fade left */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            bottom: 0,
-            width: 80,
-            background: "linear-gradient(to right, #ffffff, transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Fade right */}
-        <div
-          aria-hidden
-          style={{
-            position: "absolute",
-            top: 0,
-            right: 0,
-            bottom: 0,
-            width: 80,
-            background: "linear-gradient(to left, #ffffff, transparent)",
-            zIndex: 2,
-            pointerEvents: "none",
-          }}
-        />
-
-        {/* Track */}
-        <div
-          style={{
-            display: "flex",
-            gap: 16,
-            width: "max-content",
-            animation: paused ? "none" : "slide 28s linear infinite",
-            transform: paused ? undefined : undefined,
-          }}
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          {doubled.map((s, i) => (
-            <ServiceCard key={i} service={s} />
-          ))}
+          {/* Track */}
+          <div
+            className="flex gap-4"
+            style={{
+              width: "max-content",
+              animation: paused ? "none" : "slide 28s linear infinite",
+            }}
+            onMouseEnter={() => setPaused(true)}
+            onMouseLeave={() => setPaused(false)}
+          >
+            {doubled.map((s, i) => (
+              <ServiceCard key={i} service={s} />
+            ))}
+          </div>
         </div>
       </div>
 

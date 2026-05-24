@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useRef } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const links = [
   { label: "About", href: "/about" },
@@ -22,6 +22,7 @@ const DURATION = 700;
 
 export default function BottomNav() {
   const pathname = usePathname();
+  const router = useRouter();
 
   const [logoHovered, setLogoHovered] = useState(false);
   const [contactHovered, setContactHovered] = useState(false);
@@ -72,11 +73,12 @@ export default function BottomNav() {
 
       {/* LOGO */}
       <div
+        onClick={() => router.push("/")}
         onMouseEnter={onLogoEnter}
         onMouseLeave={onLogoLeave}
         className="flex items-center justify-center bg-amber-400 rounded-full overflow-hidden cursor-pointer shrink-0"
         style={{
-          width: logoHovered ? 130 : LOGO_W,
+          width: logoHovered ? 100 : LOGO_W,
           height: 40,
           transition: `width ${DURATION}ms ${ease}`,
         }}
@@ -86,8 +88,8 @@ export default function BottomNav() {
           style={{
             opacity: logoHovered ? 1 : 0,
             transition: logoHovered
-              ? "opacity 200ms ease 200ms"
-              : "opacity 150ms ease",
+              ? "opacity 100ms ease 100ms"
+              : "opacity 50ms ease",
           }}
         >
           iee studios
@@ -127,8 +129,8 @@ export default function BottomNav() {
                 color: isActive
                   ? "#ffffff"
                   : isHovered
-                  ? "#171717"
-                  : "#a3a3a3",
+                    ? "#171717"
+                    : "#a3a3a3",
                 transition: "color 200ms ease",
               }}
             >
