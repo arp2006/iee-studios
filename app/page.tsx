@@ -5,12 +5,10 @@ import Pricing from "./components/Pricing";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import FAQ from "./components/FAQ";
-import Bottomnav from "./components/Bottomnav";
 
 export default function Home() {
   return (
     <main className="bg-white">
-      <Bottomnav />
 
       {/* ── STICKY HERO VIDEO ── */}
       <div className="sticky top-0 h-screen z-0 overflow-hidden">
@@ -39,5 +37,3 @@ export default function Home() {
     </main>
   );
 }
-
-

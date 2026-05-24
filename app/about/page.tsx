@@ -1,4 +1,3 @@
-import Bottomnav from "../components/Bottomnav";
 import Footer from "../components/Footer";
 
 export default function AboutPage() {
@@ -29,7 +28,6 @@ export default function AboutPage() {
 
   return (
     <main className="bg-white text-black min-h-screen">
-      <Bottomnav />
 
       {/* HERO + IMAGE */}
       <section className="min-h-screen w-full flex items-center justify-center bg-white px-6 md:px-12 lg:px-24 py-24">

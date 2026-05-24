@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import SmoothScroll from "./components/utilities/Smoothscroll";
+import { NavTransition, PageTransition } from "./components/utilities/Pagetransition";
+import Bottomnav from "./components/Bottomnav";
 
 export const metadata: Metadata = {
   title: "iee studios",
@@ -21,7 +24,15 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-black text-white antialiased">{children}</body>
+      <body className="bg-black text-white antialiased">
+        <SmoothScroll />
+        <NavTransition>
+          <Bottomnav />
+        </NavTransition>
+        <PageTransition>
+          {children}
+        </PageTransition>
+      </body>
     </html>
   );
 }

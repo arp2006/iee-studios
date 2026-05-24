@@ -1,4 +1,3 @@
-import Bottomnav from "../components/Bottomnav";
 import Footer from "../components/Footer";
 
 const projects = [
@@ -55,7 +54,6 @@ const projects = [
 export default function Projects() {
   return (
     <main className="bg-white text-black ">
-      <Bottomnav />
 
       {/* HERO */}
       <section className="relative h-[80vh] w-full flex items-center justify-center overflow-hidden">
