@@ -1,10 +1,10 @@
-import About from "./components/About";
-import Work from "./components/Work";
-import Services from "./components/Services";
-import Pricing from "./components/Pricing";
-import Contact from "./components/Contact";
-import Footer from "./components/Footer";
-import FAQ from "./components/FAQ";
+import About from "../components/About";
+import Work from "../components/Work";
+import Services from "../components/Services";
+import Pricing from "../components/Pricing";
+import Contact from "../components/Contact";
+import Footer from "../components/Footer";
+import FAQ from "../components/FAQ";
 
 export default function Home() {
   return (
@@ -27,7 +27,7 @@ export default function Home() {
       <div className="w-full relative z-10 flex flex-col">
         <About />
         <Work />
-        <Services />
+        {/* <Services /> */}
         <FAQ />
         {/* <Pricing /> */}
         {/* <Contact /> */}

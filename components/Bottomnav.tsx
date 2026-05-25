@@ -13,7 +13,7 @@ const links = [
   },
 ];
 
-const EMAIL = "hello@ieestudios.com";
+const EMAIL = "inspireelevateevovle@gmail.com";
 const LOGO_W = 42;
 const CONTACT_W = 80;
 const CONTACT_EXPANDED = 260;

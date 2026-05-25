@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import SmoothScroll from "./components/utilities/Smoothscroll";
-import { NavTransition, PageTransition } from "./components/utilities/Pagetransition";
-import Bottomnav from "./components/Bottomnav";
+import SmoothScroll from "../components/utilities/Smoothscroll";
+import { NavTransition, PageTransition } from "../components/utilities/Pagetransition";
+import Bottomnav from "../components/Bottomnav";
 
 export const metadata: Metadata = {
   title: "iee studios",
