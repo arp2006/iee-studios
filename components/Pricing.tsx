@@ -16,7 +16,7 @@ const plans = [
     name: "Studio",
     price: "$22,000",
     note: "Starting from",
-    desc: "The full creative partnership — identity, web, and launch assets.",
+    desc: "The full creative partnership — identity, web and launch assets.",
     features: [
       "Everything in Essentials",
       "Website design & development",

@@ -1,3 +1,6 @@
+
+"use client"
+
 import About from "../components/About";
 import Work from "../components/Work";
 import Services from "../components/Services";
@@ -5,6 +8,42 @@ import Pricing from "../components/Pricing";
 import Contact from "../components/Contact";
 import Footer from "../components/Footer";
 import FAQ from "../components/FAQ";
+import CurvedCarousel from "@/components/CurvedCarousel"
+
+const projects = [
+  {
+    title: "Ideation",
+    image: "/images/1.jpg",
+  },
+  {
+    title: "Creative direction",
+    image: "/images/2.jpg",
+  },
+  {
+    title: "Scripting",
+    image: "/images/3.jpg",
+  },
+  {
+    title: "Moodboard",
+    image: "/images/4.jpg",
+  },
+  {
+    title: "Storyboard",
+    image: "/images/4.jpg",
+  },
+  {
+    title: "Editing",
+    image: "/images/4.jpg",
+  },
+  {
+    title: "Motion Design",
+    image: "/images/4.jpg",
+  },
+  {
+    title: "Sound engineering",
+    image: "/images/4.jpg",
+  },
+]
 
 export default function Home() {
   return (
@@ -28,6 +67,7 @@ export default function Home() {
         <About />
         <Work />
         {/* <Services /> */}
+        <CurvedCarousel />
         <FAQ />
         {/* <Pricing /> */}
         {/* <Contact /> */}

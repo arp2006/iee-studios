@@ -75,7 +75,7 @@ export default function Contact() {
               </label>
               <textarea
                 rows={4}
-                placeholder="What are you building, and when do you need it?"
+                placeholder="What are you building and when do you need it?"
                 className="w-full bg-transparent border-b border-black/20 py-3 text-black placeholder:text-black/20 focus:outline-none focus:border-black/50 transition-colors text-sm resize-none"
               />
             </div>

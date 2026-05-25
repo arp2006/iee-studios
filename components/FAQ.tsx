@@ -11,12 +11,12 @@ const faqs = [
   {
     question: "How is a Launch Film different from a launch video?",
     answer:
-      "A launch film is cinematic, emotional, and story-driven — designed to make people feel something. A launch video focuses more on explaining features and functionality. Our approach leans toward emotion first, creating work that connects with people before it sells to them.",
+      "A launch film is cinematic, emotional and story-driven — designed to make people feel something. A launch video focuses more on explaining features and functionality. Our approach leans toward emotion first, creating work that connects with people before it sells to them.",
   },
   {
     question: "How does the process work?",
     answer:
-      "You share your product, vision, and goals. From there, we shape the creative direction, tone, and structure of the film. Once aligned, we move into production, refinement, and final delivery.",
+      "You share your product, vision and goals. From there, we shape the creative direction, tone and structure of the film. Once aligned, we move into production, refinement and final delivery.",
   },
 ];
 

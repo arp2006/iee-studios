@@ -1,196 +1,251 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
-interface Service {
-  icon: string;
-  label: string;
-  desc: string;
+type Service = {
+  title: string;
   tag: string;
-  iconColor: string;
-  bgColor: string;
-  tagColor: string;
-  tagBg: string;
-}
+  icon: string;
+  color: string;
+  glow: string;
+  num: string;
+};
 
 const services: Service[] = [
   {
-    icon: "✦",
-    label: "Ideation",
-    desc: "Concept development and early-stage creative exploration.",
-    tag: "Strategy",
-    iconColor: "#185FA5",
-    bgColor: "#E6F1FB",
-    tagColor: "#0C447C",
-    tagBg: "#E6F1FB",
+    title: "Ideation",
+    tag: "concept development",
+    icon: "💡",
+    color: "#8b5cf6",
+    glow: "rgba(139,92,246,0.16)",
+    num: "01",
   },
   {
-    icon: "◈",
-    label: "Creative Direction",
-    desc: "Visual systems and direction that shape the final piece.",
-    tag: "Direction",
-    iconColor: "#993556",
-    bgColor: "#FBEAF0",
-    tagColor: "#72243E",
-    tagBg: "#FBEAF0",
+    title: "Creative Direction",
+    tag: "vision & strategy",
+    icon: "🎯",
+    color: "#ec4899",
+    glow: "rgba(236,72,153,0.16)",
+    num: "02",
   },
   {
-    icon: "✎",
-    label: "Scripting",
-    desc: "Narratives and messaging crafted for clarity and emotion.",
-    tag: "Writing",
-    iconColor: "#854F0B",
-    bgColor: "#FAEEDA",
-    tagColor: "#633806",
-    tagBg: "#FAEEDA",
+    title: "Scripting",
+    tag: "narrative craft",
+    icon: "✍️",
+    color: "#3b82f6",
+    glow: "rgba(59,130,246,0.16)",
+    num: "03",
   },
   {
-    icon: "⬒",
-    label: "Moodboards",
-    desc: "Reference worlds built to establish tone and atmosphere.",
-    tag: "Visuals",
-    iconColor: "#534AB7",
-    bgColor: "#EEEDFE",
-    tagColor: "#3C3489",
-    tagBg: "#EEEDFE",
+    title: "Moodboard",
+    tag: "visual language",
+    icon: "🎨",
+    color: "#10b981",
+    glow: "rgba(16,185,129,0.16)",
+    num: "04",
   },
   {
-    icon: "▣",
-    label: "Storyboards",
-    desc: "Scene-by-scene planning to guide pacing and composition.",
-    tag: "Planning",
-    iconColor: "#3B6D11",
-    bgColor: "#EAF3DE",
-    tagColor: "#27500A",
-    tagBg: "#EAF3DE",
+    title: "Storyboard",
+    tag: "scene planning",
+    icon: "🎬",
+    color: "#f59e0b",
+    glow: "rgba(245,158,11,0.16)",
+    num: "05",
   },
   {
-    icon: "⟐",
-    label: "Editing",
-    desc: "Tight cuts and sequencing designed for rhythm and impact.",
-    tag: "Post",
-    iconColor: "#993C1D",
-    bgColor: "#FAECE7",
-    tagColor: "#712B13",
-    tagBg: "#FAECE7",
+    title: "Editing",
+    tag: "cut & polish",
+    icon: "✂️",
+    color: "#ef4444",
+    glow: "rgba(239,68,68,0.16)",
+    num: "06",
   },
   {
-    icon: "↗",
-    label: "Motion Design",
-    desc: "Dynamic graphics and movement systems for modern visuals.",
-    tag: "Motion",
-    iconColor: "#0F6E56",
-    bgColor: "#E1F5EE",
-    tagColor: "#085041",
-    tagBg: "#E1F5EE",
+    title: "Motion Design",
+    tag: "animated worlds",
+    icon: "🌀",
+    color: "#7c3aed",
+    glow: "rgba(124,58,237,0.16)",
+    num: "07",
   },
   {
-    icon: "◉",
-    label: "Sound Engineering",
-    desc: "Mixing, mastering, and sound design for cinematic delivery.",
-    tag: "Audio",
-    iconColor: "#5F5E5A",
-    bgColor: "#F1EFE8",
-    tagColor: "#444441",
-    tagBg: "#F1EFE8",
+    title: "Sound Engineering",
+    tag: "audio mastery",
+    icon: "🎧",
+    color: "#14b8a6",
+    glow: "rgba(20,184,166,0.16)",
+    num: "08",
   },
 ];
 
-function ServiceCard({ service }: { service: Service }) {
-  const [hovered, setHovered] = useState(false);
+export default function AgencyServicesCurvedCarousel() {
+  const [angle, setAngle] = useState(0);
 
-  return (
-    <div
-      className="flex flex-col gap-2.5 p-5 pb-4 rounded-xl bg-white cursor-default select-none transition-all duration-200"
-      style={{
-        width: 220,
-        flexShrink: 0,
-        border: hovered ? "0.5px solid #b0aca5" : "0.5px solid #e5e3de",
-        transform: hovered ? "translateY(-3px)" : "translateY(0)",
-        boxSizing: "border-box",
-      }}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* Icon */}
-      <div
-        className="flex items-center justify-center w-9 h-9 rounded-lg text-lg font-medium"
-        style={{ background: service.bgColor, color: service.iconColor }}
-        aria-hidden
-      >
-        {service.icon}
-      </div>
+  const angleRef = useRef(0);
+  const velocityRef = useRef(0);
+  const draggingRef = useRef(false);
+  const autoSpinRef = useRef(true);
+  const lastXRef = useRef(0);
+  const resumeTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-      {/* Label */}
-      <p className="text-sm font-medium text-[#1a1918] m-0">
-        {service.label}
-      </p>
+  const RX = 620;
+  const RY = 100;
 
-      {/* Description */}
-      <p className="text-xs text-[#6b6965] m-0 leading-relaxed flex-1">
-        {service.desc}
-      </p>
+  useEffect(() => {
+    let frame: number;
 
-      {/* Tag */}
-      <span
-        className="text-[11px] px-2 py-0.5 rounded-lg w-fit"
-        style={{ background: service.tagBg, color: service.tagColor }}
-      >
-        {service.tag}
-      </span>
-    </div>
-  );
-}
+    const animate = () => {
+      if (!draggingRef.current) {
+        if (autoSpinRef.current) {
+          velocityRef.current += (0.0028 - velocityRef.current) * 0.04;
+        } else {
+          velocityRef.current *= 0.94;
+        }
 
-export default function ServicesCarousel() {
-  const [paused, setPaused] = useState(false);
-  const doubled = [...services, ...services];
+        angleRef.current += velocityRef.current;
+        setAngle(angleRef.current);
+      }
+
+      frame = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  const handlePointerDown = (clientX: number) => {
+    draggingRef.current = true;
+    autoSpinRef.current = false;
+    lastXRef.current = clientX;
+    velocityRef.current = 0;
+
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current);
+    }
+  };
+
+  const handlePointerMove = (clientX: number) => {
+    if (!draggingRef.current) return;
+
+    const dx = clientX - lastXRef.current;
+
+    velocityRef.current = dx * 0.004;
+    angleRef.current += velocityRef.current;
+
+    lastXRef.current = clientX;
+
+    setAngle(angleRef.current);
+  };
+
+  const handlePointerUp = () => {
+    if (!draggingRef.current) return;
+
+    draggingRef.current = false;
+
+    if (resumeTimerRef.current) {
+      clearTimeout(resumeTimerRef.current);
+    }
+
+    resumeTimerRef.current = setTimeout(() => {
+      autoSpinRef.current = true;
+    }, 1800);
+  };
 
   return (
     <section
-      aria-label="Services offered"
-      className="w-full flex justify-center bg-[#808080] py-32"
+      className="relative flex h-[620px] w-full items-center justify-center overflow-hidden bg-white px-6 select-none"
+      onMouseDown={(e) => handlePointerDown(e.clientX)}
+      onMouseMove={(e) => handlePointerMove(e.clientX)}
+      onMouseUp={handlePointerUp}
+      onMouseLeave={handlePointerUp}
+      onTouchStart={(e) => handlePointerDown(e.touches[0].clientX)}
+      onTouchMove={(e) => handlePointerMove(e.touches[0].clientX)}
+      onTouchEnd={handlePointerUp}
     >
-      <div className="w-full min-h-[50vh] max-w-[1420px]">
-        {/* Carousel */}
-        <div className="overflow-hidden relative">
-          {/* Fade left */}
-          <div
-            aria-hidden
-            className="absolute top-0 left-0 bottom-0 w-20 z-10 pointer-events-none"
-            style={{ background: "linear-gradient(to right, #808080, transparent)" }}
-          />
+      {/* soft radial bg */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(139,92,246,0.08)_0%,transparent_40%)]" />
 
-          {/* Fade right */}
-          <div
-            aria-hidden
-            className="absolute top-0 right-0 bottom-0 w-20 z-10 pointer-events-none"
-            style={{ background: "linear-gradient(to left, #808080, transparent)" }}
-          />
 
-          {/* Track */}
+      {/* ellipse lines */}
+      {/* cards */}
+      {services.map((service, i) => {
+        const a = (2 * Math.PI * i) / services.length + angle;
+
+        const x = Math.cos(a) * RX;
+        const y = Math.sin(a) * RY;
+
+        const depthT = (Math.sin(a) + 1) / 2;
+        
+        const scale = 1;
+
+        const z = Math.sin(a);
+
+        const opacity = 0.45 + depthT * 0.55;
+
+        const isActive = z > 0.45;
+
+        return (
           <div
-            className="flex gap-4"
+            key={service.title}
+            className="absolute top-1/2 left-1/2 will-change-transform"
             style={{
-              width: "max-content",
-              animation: paused ? "none" : "slide 28s linear infinite",
+              transform: `translate(${x - 180}px, ${y - 60}px) scale(${scale})`,
+              opacity,
+              zIndex: Math.round((z + 1) * 50),
             }}
-            onMouseEnter={() => setPaused(true)}
-            onMouseLeave={() => setPaused(false)}
           >
-            {doubled.map((s, i) => (
-              <ServiceCard key={i} service={s} />
-            ))}
-          </div>
-        </div>
-      </div>
+            <div
+              className="relative flex w-[360px] flex-col gap-7 rounded-[40px] border border-black/6 bg-white p-10 transition-all duration-300"
+              style={{
+                background: isActive
+                  ? `linear-gradient(135deg, ${service.color}, ${service.color}dd)`
+                  : `linear-gradient(135deg, ${service.color}ee, ${service.color}bb)`,
 
-      <style>{`
-        @keyframes slide {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-      `}</style>
+                boxShadow: isActive
+                  ? `0 25px 80px ${service.glow}`
+                  : `0 10px 40px ${service.glow}`,
+
+                borderColor: "transparent",
+              }}
+            >
+              <div className="flex items-center justify-between">
+                <span className="text-[14px] font-medium tracking-[0.22em] text-white/60">
+                  {service.num}
+                </span>
+
+                <div className="text-5xl">
+                  {service.icon}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <h3
+                  className="text-[40px] font-semibold leading-[0.95] tracking-[-0.06em]"
+                  style={{
+                    color: "#ffffff",
+                  }}
+                >
+                  {service.title}
+                </h3>
+
+                <p className="text-[16px] leading-relaxed tracking-[0.01em] text-white/70">
+                  {service.tag}
+                </p>
+              </div>
+
+
+            </div>
+          </div>
+        );
+      })}
+
+      {/* hint */}
+      <div className="absolute bottom-12 left-1/2 z-30 flex -translate-x-1/2 items-center gap-3 text-[11px] uppercase tracking-[0.25em] text-white/40">
+        <span>←</span>
+        Drag to explore
+        <span>→</span>
+      </div>
     </section>
   );
 }

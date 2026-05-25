@@ -2,12 +2,14 @@ import Footer from "../../components/Footer";
 
 export default function AboutPage() {
   const capabilities = [
+    "Ideation",
     "Creative Direction",
-    "Web Design",
-    "Frontend Development",
-    "Motion Systems",
-    "Brand Identity",
-    "Visual Storytelling",
+    "Scripting",
+    "Moodboard",
+    "Storyboard",
+    "Editing",
+    "Motion Design",
+    "Sound Engineering"
   ];
 
   const process = [
@@ -37,13 +39,12 @@ export default function AboutPage() {
             <p className={labelClass}>About</p>
 
             <h1 className="mt-6 text-3xl md:text-5xl lg:text-6xl leading-[0.92] tracking-tight max-w-4xl">
-              We create cinematic digital experiences that feel intentional,
-              emotional, and memorable.
+              Videos that make you feel something in your chest
             </h1>
 
             <p className="mt-8 max-w-xl text-sm text-black/50 leading-relaxed">
-              Placeholder Studio is a multidisciplinary creative practice focused
-              on storytelling, motion, and interactive systems.
+              iee studios is a multidisciplinary creative practice focused
+              on storytelling, motion and interactive systems.
             </p>
           </div>
 
@@ -70,7 +71,7 @@ export default function AboutPage() {
             </h2>
 
             <p className="mt-6 text-sm text-black/50 leading-relaxed max-w-xl">
-              Every project begins with narrative, pacing, atmosphere, and
+              Every project begins with narrative, pacing, atmosphere and
               restraint.
             </p>
           </div>
@@ -106,7 +107,7 @@ export default function AboutPage() {
 
           <div className="flex items-center">
             <p className="text-xl md:text-3xl leading-[1.15] tracking-tight max-w-3xl">
-              Since 2023, Placeholder Studio has collaborated with startups and
+              Since 2023, iee studios has collaborated with startups and
               independent brands across launch films and digital experiences.
             </p>
           </div>
@@ -148,7 +149,7 @@ export default function AboutPage() {
 
           <div className="flex items-center">
             <p className="text-sm leading-relaxed text-black/50 max-w-xl">
-              Inspired by cinema, architecture, ambient sound design, and quiet
+              Inspired by cinema, architecture, ambient sound design and quiet
               interfaces.
             </p>
           </div>

@@ -24,7 +24,7 @@ export default function Work() {
   return (
     <section className="w-full flex justify-center bg-white py-10" >
       <div className="w-full max-w-[1420px]">
-        <div className="grid grid-cols-3 grid-rows-1 gap-6 ">
+        <div className="grid grid-cols-3 grid-rows-1 gap-5 ">
 
           {/* Tweet 1 — col 1, row 1 */}
           <div
