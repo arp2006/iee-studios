@@ -43,50 +43,127 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="bg-white py-32 px-8 md:px-16">
-      <div className="max-w-6xl mx-auto">
-        <span className="text-xs tracking-[0.3em] uppercase text-black/30">04 — Pricing</span>
-        <h2 className="font-display text-[clamp(2rem,4vw,4rem)] font-light mt-4 mb-6 text-black">
-          Transparent investment
-        </h2>
-        <p className="text-black/40 max-w-xl mb-20 leading-relaxed">
-          Every project is scoped together. These tiers give you a starting point — most work falls
-          somewhere between.
-        </p>
+    <section
+      id="pricing"
+      className="bg-white px-6 py-24 md:px-10"
+    >
+      <div className="mx-auto max-w-[1420px]">
+        
+        {/* Heading */}
+        <div className="mb-16">
+          <p className="mb-3 text-[11px] font-medium uppercase tracking-[0.28em] text-black/35">
+            Pricing
+          </p>
 
-        <div className="grid md:grid-cols-3 gap-6">
+          <h2 className="max-w-[700px] text-[clamp(2rem,4vw,4rem)] font-medium leading-[0.95] tracking-[-0.07em] text-black">
+            Transparent
+            <span className="ml-3 inline-block text-[1.15em]">
+              investment
+            </span>
+          </h2>
+
+          <p className="mt-6 max-w-[520px] text-[13px] leading-relaxed text-black/45">
+            Every project is scoped together. These tiers give a rough
+            starting point — most engagements land somewhere between.
+          </p>
+        </div>
+
+        {/* Cards */}
+        <div className="grid gap-5 md:grid-cols-3">
           {plans.map((plan) => (
             <div
               key={plan.name}
-              className={`relative p-10 rounded-2xl border transition-all ${
+              className={`group relative overflow-hidden rounded-[24px] border p-8 transition-all duration-500 ${
                 plan.highlight
-                  ? "border-black/30 bg-[#f5f5f3]"
-                  : "border-black/10 bg-transparent hover:border-black/20"
+                  ? "border-black/20 bg-black text-white"
+                  : "border-black/10 bg-[#fafafa] hover:border-black/20"
               }`}
             >
+              {/* Badge */}
               {plan.highlight && (
-                <span className="absolute -top-3 left-8 text-[10px] tracking-[0.2em] uppercase bg-black text-white px-3 py-1 rounded-full">
+                <span className="absolute right-5 top-5 rounded-full border border-white/10 bg-white/10 px-3 py-1.5 text-[9px] uppercase tracking-[0.22em] text-white/70 backdrop-blur-sm">
                   Most popular
                 </span>
               )}
-              <p className="text-xs tracking-[0.2em] uppercase text-black/30 mb-2">{plan.note}</p>
-              <p className="font-display text-5xl font-light text-black mb-1">{plan.price}</p>
-              <p className="font-display text-xl text-black/50 mb-6">{plan.name}</p>
-              <p className="text-black/40 text-sm leading-relaxed mb-8">{plan.desc}</p>
-              <ul className="space-y-3 mb-10">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3 text-sm text-black/50">
-                    <span className="text-black/20 mt-0.5">—</span>
-                    {f}
+
+              {/* Note */}
+              <p
+                className={`mb-4 text-[10px] uppercase tracking-[0.22em] ${
+                  plan.highlight
+                    ? "text-white/40"
+                    : "text-black/30"
+                }`}
+              >
+                {plan.note}
+              </p>
+
+              {/* Price */}
+              <div className="mb-5">
+                <h3
+                  className={`text-[clamp(2.2rem,3vw,3.5rem)] font-medium leading-[0.9] tracking-[-0.07em] ${
+                    plan.highlight
+                      ? "text-white"
+                      : "text-black"
+                  }`}
+                >
+                  {plan.price}
+                </h3>
+
+                <p
+                  className={`mt-2 text-[0.95rem] tracking-[-0.04em] ${
+                    plan.highlight
+                      ? "text-white/50"
+                      : "text-black/40"
+                  }`}
+                >
+                  {plan.name}
+                </p>
+              </div>
+
+              {/* Description */}
+              <p
+                className={`mb-8 text-[13px] leading-relaxed ${
+                  plan.highlight
+                    ? "text-white/60"
+                    : "text-black/45"
+                }`}
+              >
+                {plan.desc}
+              </p>
+
+              {/* Features */}
+              <ul className="mb-10 space-y-3">
+                {plan.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className={`flex items-start gap-3 text-[13px] ${
+                      plan.highlight
+                        ? "text-white/75"
+                        : "text-black/55"
+                    }`}
+                  >
+                    <span
+                      className={`mt-[1px] text-[10px] ${
+                        plan.highlight
+                          ? "text-white/30"
+                          : "text-black/20"
+                      }`}
+                    >
+                      ●
+                    </span>
+
+                    <span>{feature}</span>
                   </li>
                 ))}
               </ul>
+
+              {/* Button */}
               <a
                 href="#contact"
-                className={`block text-center text-xs tracking-[0.2em] uppercase py-3 rounded-full border transition-colors ${
+                className={`flex items-center justify-center rounded-full px-5 py-3 text-[10px] uppercase tracking-[0.22em] transition-all duration-300 ${
                   plan.highlight
-                    ? "border-black text-black hover:bg-black hover:text-white"
-                    : "border-black/20 text-black/50 hover:border-black/40 hover:text-black"
+                    ? "bg-white text-black hover:scale-[1.02]"
+                    : "border border-black/10 bg-white text-black hover:border-black/20"
                 }`}
               >
                 Get started
