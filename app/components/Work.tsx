@@ -52,18 +52,18 @@ const projects = [
 export default function Work() {
   return (
     <section className="w-full flex justify-center bg-white py-10">
-      <div className="w-full max-w-[1400px]">
+      <div className="w-full max-w-[1420px]">
 
         {/* projects */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
           {projects.map((project) => (
             <div
               key={project.num}
-              className="group cursor-pointer"
+              className="group"
             >
 
               {/* top info */}
-              <div className="flex items-start justify-between mb-6 border-b border-black/10 pb-4">
+              <div className="flex items-start justify-between mb-6 border-b border-black/10">
 
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.25em] text-black/30 mb-3">
@@ -81,7 +81,7 @@ export default function Work() {
               </div>
 
               {/* thumbnail */}
-              <div className="relative overflow-hidden bg-black aspect-[16/9]">
+              <div className="relative overflow-hidden bg-black aspect-[16/9]  cursor-pointer">
                 <img
                   src={project.thumbnail}
                   alt={project.title}
@@ -92,7 +92,7 @@ export default function Work() {
               </div>
 
               {/* deliverables */}
-              <div className="mt-5 flex flex-wrap gap-x-5 gap-y-2">
+              <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
                 {project.deliverables.map((item) => (
                   <p
                     key={item}

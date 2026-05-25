@@ -24,7 +24,7 @@ export default function Home() {
       </div>
 
       {/* ── CONTENT SLIDES OVER VIDEO ── */}
-      <div className="w-full relative z-10 -mt-[10vh] flex flex-col">
+      <div className="w-full relative z-10 flex flex-col">
         <About />
         <Work />
         <Services />

@@ -12,11 +12,11 @@ export default function Footer({
   return (
     <footer id="contact"  className="w-full flex justify-center bg-white">
       <div 
-        className="w-full max-w-[1400px] mx-auto  min-h-[20vh] px-8 md:px-16"
+        className="w-full max-w-[1420px] min-h-[20vh] "
       >
 
         {/* MAIN */}
-        <div className="px-6 md:px-12 lg:px-20 pb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
+        <div className="pb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-10">
 
           {/* LEFT */}
           <div className="flex flex-col gap-6 max-w-[520px]">

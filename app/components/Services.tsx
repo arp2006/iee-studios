@@ -151,7 +151,7 @@ export default function ServicesCarousel() {
       aria-label="Services offered"
       className="w-full flex justify-center bg-[#808080] py-32"
     >
-      <div className="w-full min-h-[50vh] max-w-[1400px]">
+      <div className="w-full min-h-[50vh] max-w-[1420px]">
         {/* Carousel */}
         <div className="overflow-hidden relative">
           {/* Fade left */}

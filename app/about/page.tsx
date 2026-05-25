@@ -21,7 +21,7 @@ export default function AboutPage() {
   const sectionClass =
     "min-h-[80vh] px-6 md:px-12 lg:px-24 py-32 w-full flex items-center justify-center bg-white";
 
-  const containerClass = "w-full max-w-[1400px]";
+  const containerClass = "w-full max-w-[1420px]";
 
   const labelClass =
     "text-[10px] uppercase tracking-[0.25em] text-black/30";

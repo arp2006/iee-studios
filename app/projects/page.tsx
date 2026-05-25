@@ -93,7 +93,7 @@ export default function Projects() {
 
       {/* PROJECTS */}
       <section className="w-full flex justify-center bg-white py-10 px-6 md:px-12 lg:px-24">
-        <div className="w-full max-w-[1400px]">
+        <div className="w-full max-w-[1420px]">
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-14">
             {projects.map((project) => (
