@@ -7,10 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 const links = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  {
-    label: "Calendly",
-    href: "https://calendly.com/iee-studios/30-mins-meeting",
-  },
+  { label: "Calendly", href: "https://calendly.com/iee-studios/30-mins-meeting" },
 ];
 
 const EMAIL = "inspireelevateevovle@gmail.com";
@@ -29,20 +26,23 @@ export default function BottomNav() {
   const [contactHovered, setContactHovered] = useState(false);
   const [copied, setCopied] = useState(false);
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
-  // Nav transition blur/fade on route change
+  // Route transition blur/fade
   const prevPathname = useRef(pathname);
   const [isTransitioning, setIsTransitioning] = useState(false);
   useEffect(() => {
     if (prevPathname.current !== pathname) {
       prevPathname.current = pathname;
       setIsTransitioning(true);
+      setSheetOpen(false);
       const t = setTimeout(() => setIsTransitioning(false), 550);
       return () => clearTimeout(t);
     }
   }, [pathname]);
 
-  // Pill position tracking
+  // Sliding active pill
   const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const [pillStyle, setPillStyle] = useState<{ left: number; width: number } | null>(null);
@@ -56,17 +56,31 @@ export default function BottomNav() {
   useEffect(() => {
     const activeEl = linkRefs.current[activeIndex];
     const containerEl = containerRef.current;
-    if (!activeEl || !containerEl) {
-      setPillStyle(null);
-      return;
-    }
+    if (!activeEl || !containerEl) { setPillStyle(null); return; }
     const containerRect = containerEl.getBoundingClientRect();
     const elRect = activeEl.getBoundingClientRect();
-    setPillStyle({
-      left: elRect.left - containerRect.left,
-      width: elRect.width,
-    });
+    setPillStyle({ left: elRect.left - containerRect.left, width: elRect.width });
   }, [activeIndex, pathname]);
+
+  // Mobile detection
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
+  // Close sheet on outside tap
+  useEffect(() => {
+    if (!sheetOpen) return;
+    const handler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target.closest("[data-sheet]") && !target.closest("[data-sheet-trigger]"))
+        setSheetOpen(false);
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [sheetOpen]);
 
   const logoTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -78,17 +92,147 @@ export default function BottomNav() {
   const onContactLeave = () => { if (contactEnterTimer.current) clearTimeout(contactEnterTimer.current); leaveTimer.current = setTimeout(() => setContactHovered(false), 120); };
   const handleCopy = () => { navigator.clipboard.writeText(EMAIL); setCopied(true); setTimeout(() => setCopied(false), 2000); };
 
+  const motionProps = {
+    animate: reduce ? {} : isTransitioning
+      ? { opacity: 0.45, y: 6, filter: "blur(2px)" }
+      : { opacity: 1, y: 0, filter: "blur(0px)" },
+    transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1] as const },
+  };
+
+  /* ── MOBILE ── */
+  if (isMobile) {
+    return (
+      <>
+        {/* Backdrop */}
+        <div
+          onClick={() => setSheetOpen(false)}
+          style={{
+            position: "fixed",
+            inset: 0,
+            background: "rgba(0,0,0,0.3)",
+            zIndex: 40,
+            opacity: sheetOpen ? 1 : 0,
+            pointerEvents: sheetOpen ? "auto" : "none",
+            transition: `opacity 300ms ${cssEase}`,
+          }}
+        />
+
+        {/* Bottom sheet */}
+        <div
+          data-sheet
+          style={{
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            zIndex: 50,
+            background: "white",
+            borderRadius: "20px 20px 0 0",
+            padding: "12px 20px 40px",
+            transform: sheetOpen ? "translateY(0)" : "translateY(100%)",
+            transition: `transform 400ms ${cssEase}`,
+          }}
+        >
+          {/* Handle */}
+          <div style={{ width: 36, height: 4, background: "#e5e5e5", borderRadius: 99, margin: "0 auto 20px" }} />
+
+          {/* Links */}
+          <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+            {links.map(({ label, href }) => {
+              const isExternal = href.startsWith("http");
+              const isActive = !isExternal && (pathname === href || (href !== "/" && pathname.startsWith(href)));
+              return (
+                <a
+                  key={label}
+                  href={href}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  onClick={() => !isExternal && setSheetOpen(false)}
+                  style={{
+                    padding: "14px 16px",
+                    borderRadius: 12,
+                    background: isActive ? "#f5f5f5" : "transparent",
+                    color: isActive ? "#171717" : "#525252",
+                    fontSize: 16,
+                    fontWeight: isActive ? 500 : 400,
+                    textDecoration: "none",
+                    transition: "background 150ms, color 150ms",
+                  }}
+                >
+                  {label}
+                </a>
+              );
+            })}
+          </div>
+
+          {/* Divider */}
+          <div style={{ height: 1, background: "#f5f5f5", margin: "16px 0" }} />
+
+          {/* Email row */}
+          <div style={{
+            background: "#FACC15",
+            borderRadius: 14,
+            padding: "14px 16px",
+            display: "flex",
+            alignItems: "center",
+            gap: 10,
+          }}>
+            <span style={{ color: "#92400e", fontSize: 14, fontWeight: 500, flex: 1, overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap" }}>
+              {EMAIL}
+            </span>
+            <button
+              onClick={handleCopy}
+              style={{ background: "white", color: "#92400e", fontSize: 12, fontWeight: 600, borderRadius: 999, padding: "6px 14px", border: "none", cursor: "pointer", flexShrink: 0 }}
+            >
+              {copied ? "Copied!" : "Copy"}
+            </button>
+          </div>
+        </div>
+
+        {/* Floating trigger bar */}
+        <motion.nav
+          className="fixed left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-3"
+          style={{ bottom: 20 }}
+          {...motionProps}
+        >
+          <div
+            onClick={() => router.push("/")}
+            className="flex items-center justify-center bg-amber-400 rounded-full cursor-pointer shrink-0"
+            style={{ width: LOGO_W, height: 40 }}
+          />
+          <button
+            data-sheet-trigger
+            onClick={() => setSheetOpen(v => !v)}
+            style={{
+              background: "#171717",
+              color: "white",
+              border: "none",
+              borderRadius: 999,
+              padding: "0 20px",
+              height: 40,
+              fontSize: 14,
+              fontWeight: 500,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+            }}
+          >
+            {sheetOpen ? "Close" : "Menu"}
+            <span style={{ display: "inline-block", transform: sheetOpen ? "rotate(180deg)" : "rotate(0deg)", transition: `transform 400ms ${cssEase}`, fontSize: 12 }}>↑</span>
+          </button>
+        </motion.nav>
+      </>
+    );
+  }
+
+  /* ── DESKTOP ── */
   return (
     <motion.nav
       className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-4"
-      animate={
-        reduce ? {} : isTransitioning
-          ? { opacity: 0.45, y: 6, filter: "blur(2px)" }
-          : { opacity: 1,   y: 0, filter: "blur(0px)" }
-      }
-      transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+      {...motionProps}
     >
-      {/* LOGO */}
+      {/* Logo */}
       <div
         onClick={() => router.push("/")}
         onMouseEnter={onLogoEnter}
@@ -98,47 +242,38 @@ export default function BottomNav() {
       >
         <span
           className="text-amber-900 font-semibold text-sm whitespace-nowrap"
-          style={{
-            opacity: logoHovered ? 1 : 0,
-            transition: logoHovered ? "opacity 100ms ease 100ms" : "opacity 50ms ease",
-          }}
+          style={{ opacity: logoHovered ? 1 : 0, transition: logoHovered ? "opacity 100ms ease 100ms" : "opacity 50ms ease" }}
         >
           iee studios
         </span>
       </div>
 
-      {/* NAV LINKS */}
+      {/* Nav links */}
       <div
         ref={containerRef}
         className="flex items-center bg-white rounded-full shrink-0 shadow-sm"
         style={{ height: 40, padding: "0 6px", position: "relative" }}
       >
-        {/* Sliding active pill — single element, moves via CSS transition */}
         {pillStyle && (
           <span
             aria-hidden="true"
             style={{
               position: "absolute",
-              top: 4,
-              bottom: 4,
+              top: 4, bottom: 4,
               left: pillStyle.left,
               width: pillStyle.width,
               background: "#171717",
               borderRadius: 9999,
-              transition: reduce
-                ? "none"
-                : `left 420ms cubic-bezier(0.76, 0, 0.24, 1), width 420ms cubic-bezier(0.76, 0, 0.24, 1)`,
+              transition: reduce ? "none" : `left 420ms cubic-bezier(0.76, 0, 0.24, 1), width 420ms cubic-bezier(0.76, 0, 0.24, 1)`,
               pointerEvents: "none",
               zIndex: 0,
             }}
           />
         )}
-
         {links.map(({ label, href }, i) => {
           const isHovered = hoveredLink === label;
           const isActive = i === activeIndex;
           const isExternal = href.startsWith("http");
-
           return (
             <a
               key={label}
@@ -149,14 +284,8 @@ export default function BottomNav() {
               onMouseEnter={() => setHoveredLink(label)}
               onMouseLeave={() => setHoveredLink(null)}
               className="relative text-sm whitespace-nowrap no-underline flex items-center justify-center"
-              style={{
-                padding: "6px 20px",
-                color: isActive ? "#ffffff" : isHovered ? "#171717" : "#a3a3a3",
-                transition: "color 200ms ease",
-                zIndex: 1,
-              }}
+              style={{ padding: "6px 20px", color: isActive ? "#ffffff" : isHovered ? "#171717" : "#a3a3a3", transition: "color 200ms ease", zIndex: 1 }}
             >
-              {/* Hover highlight — only when not active */}
               {!isActive && (
                 <span
                   aria-hidden="true"
@@ -176,7 +305,7 @@ export default function BottomNav() {
         })}
       </div>
 
-      {/* CONTACT */}
+      {/* Contact */}
       <div
         onMouseEnter={onContactEnter}
         onMouseLeave={onContactLeave}
@@ -200,15 +329,9 @@ export default function BottomNav() {
           </span>
           <div
             className="flex items-center w-full gap-2"
-            style={{
-              padding: "0 12px",
-              opacity: contactHovered ? 1 : 0,
-              transition: contactHovered ? "opacity 160ms ease 160ms" : "opacity 80ms ease",
-            }}
+            style={{ padding: "0 12px", opacity: contactHovered ? 1 : 0, transition: contactHovered ? "opacity 160ms ease 160ms" : "opacity 80ms ease" }}
           >
-            <span className="text-amber-900 text-sm font-medium flex-1 pl-1 whitespace-nowrap overflow-hidden text-ellipsis">
-              {EMAIL}
-            </span>
+            <span className="text-amber-900 text-sm font-medium flex-1 pl-1 whitespace-nowrap overflow-hidden text-ellipsis">{EMAIL}</span>
             <button
               onClick={handleCopy}
               className="bg-white text-amber-900 text-xs font-semibold rounded-full shrink-0 cursor-pointer hover:bg-amber-50 transition-colors duration-100"

@@ -79,7 +79,7 @@ export default function Work() {
           />
           
           <div
-            className="h-[635px] overflow-hidden flex items-start justify-center"
+            className="h-[640px] overflow-hidden flex items-start justify-center"
             data-lenis-prevent
             dangerouslySetInnerHTML={{ __html: `
               <blockquote class="twitter-tweet" data-theme="light">
