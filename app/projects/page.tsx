@@ -2,6 +2,7 @@
 
 import { useEffect } from "react";
 import Footer from "../../components/Footer";
+import TweetCard from "@/components/cards/TweetCard";
 
 const twitterProjects = [
   {
@@ -194,12 +195,100 @@ export default function Projects() {
           </div>
 
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {twitterProjects.map((project) => (
-              <EmbedCard
-                key={project.num}
-                project={project}
-              />
-            ))}
+            <TweetCard
+              author={{
+                name: "Euphoria",
+                handle: "Euphoria_fi",
+                avatarUrl: "https://pbs.twimg.com/profile_images/1878617867756744704/Eu_uhVHP_400x400.jpg", // pink asterisk logo
+                verified: true,
+              }}
+              content={`Euphoria mainnet is now live.\n\nIt's time to have some fun.\n\neuphoria.finance`}
+              mediaUrl="https://pbs.twimg.com/amplify_video_thumb/2054953112763301888/img/UsEv9ybFPfOeOEZY.jpg"
+              mediaAlt="Launch preview"
+              timestamp="9:30 PM · May 14, 2026"
+              views="339.8K"
+              replies={159}
+              retweets={227}
+              likes={913}
+              bookmarks={211}
+              tweetUrl="https://x.com/Euphoria_fi/status/2054954998375535097"
+            />
+
+            <TweetCard
+              author={{
+                name: "Tirth",
+                handle: "madtirth",
+                avatarUrl: "https://pbs.twimg.com/profile_images/2055001661287067648/iYFi418S_400x400.jpg", // dark avatar
+                verified: true,
+              }}
+              content={`Anyone can ship a launch video now\n\nVery few make you feel something in your chest\n\nNew film just dropped`}
+              mediaUrl="https://pbs.twimg.com/amplify_video_thumb/2038321781828980736/img/qINFKCcB0Z8QB8Aw.jpg"
+              mediaAlt="Launch preview"
+              timestamp="12:03 AM · Mar 30, 2026"
+              views="36.5K"
+              replies={44}
+              retweets={23}
+              likes={625}
+              bookmarks={0}
+              tweetUrl="https://x.com/madtirth/status/2038323701410844927"
+            />
+
+            <TweetCard
+              author={{
+                name: "TradeZella",
+                handle: "TradeZella",
+                avatarUrl: "https://pbs.twimg.com/profile_images/2059284585725530112/lcJyhyKv_400x400.jpg", // purple bull logo
+                verified: true,
+              }}
+              content={`We've been cooking something...\n\nAnd you're about to meet her. 🪄\n\nTuesday, May 26.`}
+              mediaUrl="https://pbs.twimg.com/amplify_video_thumb/2057487880998559744/img/mFUaZrk42w9bMNSE.jpg"
+              mediaAlt="Launch preview"
+              timestamp="9:15 PM · May 21, 2026"
+              views="12K"
+              replies={6}
+              retweets={21}
+              likes={64}
+              bookmarks={10}
+              tweetUrl="https://x.com/TradeZella/status/2057487901206749656"
+            />
+
+            <TweetCard
+              author={{
+                name: "Y Combinator",
+                handle: "ycombinator",
+                avatarUrl: "https://pbs.twimg.com/profile_images/1623777064821358592/9CApQWXe_400x400.png", // orange Y logo
+                verified: true,
+              }}
+              content={`Mochatrade (@mochatradeapp) is a perpetual futures trading platform that gives Indian traders access to 50+ US stocks (Tesla, Nvidia, Apple), indices and crypto – funded in INR via UPI, with up to 50x leverage, available 24/7.\n\nCongrats on the launch, @theblackmanda, @ichooserain, and @_ParthVader_!\n\nycombinator.com/launches/QJd-m...`}
+              mediaUrl="https://pbs.twimg.com/amplify_video_thumb/2054006260207611904/img/kwK2X0TO_clVpEyt.jpg"
+              mediaAlt="Launch preview"
+              timestamp="7:30 AM · May 12, 2026"
+              views="323.2K"
+              replies={93}
+              retweets={107}
+              likes={567}
+              bookmarks={330}
+              tweetUrl="https://x.com/ycombinator/status/2054018731479589362"
+            />
+
+            <TweetCard
+              author={{
+                name: "Tirth",
+                handle: "madtirth",
+                avatarUrl: "https://pbs.twimg.com/profile_images/2055001661287067648/iYFi418S_400x400.jpg", // dark avatar
+                verified: true,
+              }}
+              content={`What peak taste and creativity feel like for a launch promo\n\n\n\n`}
+              mediaUrl="https://pbs.twimg.com/amplify_video_thumb/2051581686539046912/img/W-taOgEIAOlVSx2r.jpg"
+              mediaAlt="Launch preview"
+              timestamp="2:06 PM · May 5, 2026"
+              views="5,594"
+              replies={4}
+              retweets={2}
+              likes={111}
+              bookmarks={0}
+              tweetUrl="https://x.com/madtirth/status/2051581866269102567"
+            />
           </div>
 
         </div>
