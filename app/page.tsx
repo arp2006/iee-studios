@@ -1,13 +1,12 @@
 
 "use client"
 
-import About from "../components/home/About";
-import Work from "../components/home/Work";
-import Services from "../components/home/Services";
-import Pricing from "../components/home/Pricing";
-import ExploreLinksSection from "../components/home/Links";
-import Footer from "../components/Footer";
-import FAQ from "../components/home/FAQ";
+import About from "@/components/home/About";
+import Work from "@/components/home/Work";
+import Pricing from "@/components/home/Pricing";
+import ExploreLinksSection from "@/components/home/Links";
+import Footer from "@/components/Footer";
+import FAQ from "@/components/home/FAQ";
 import CurvedCarousel from "@/components/home/CurvedCarousel"
 
 export default function Home() {
