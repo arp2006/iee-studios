@@ -26,7 +26,7 @@ export default function Work() {
   return (
     <section className="w-full flex justify-center bg-white py-10" >
       <div className="w-full max-w-[1420px]">
-        <div className="grid px-6 grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-4 grid-rows-1 gap-5 ">
+        <div className="grid px-6 grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-4 grid-rows-1 gap-5 bg-white">
 
           {/* Tweet 1 — col 1, row 1 */}
           <TweetCard
