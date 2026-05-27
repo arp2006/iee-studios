@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Footer from "../../components/Footer";
 import TweetCard from "@/components/cards/TweetCard";
+import InstagramReelCard from "@/components/cards/InstagramReelCard";
 
 const twitterProjects = [
   {
@@ -305,12 +306,38 @@ export default function Projects() {
           </div>
 
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {instagramProjects.map((project) => (
-              <EmbedCard
-                key={project.num}
-                project={project}
-              />
-            ))}
+            <InstagramReelCard
+              author={{
+                name: "MarketMirror",
+                handle: "marketmirror",
+                avatarUrl: "https://pbs.twimg.com/profile_images/2047479335326736384/2xm5mMmH_400x400.jpg",
+                verified: true,
+              }}
+              caption={`
+                Welcome to @MarketMirror
+  
+                Every time you got liquidated. Every time you bought the top. Every time the market moved against you, that wasn’t bad luck. That was someone with better data on the other side of your trade.
+  
+                Billionaires see whale wallets move in real time. Hedge funds see liquidations before they trigger. You’ve been trading blind against people who see everything.
+  
+                Not anymore.
+  
+                Real-time Whale Tracking. Live Liquidation Heatmaps. AI Market Intelligence. Support & Resistance Levels. Social Sentiment. Dozens of Trading Features. All in one app.
+  
+                Same data. Same weapons. Your move.
+  
+                Don’t follow the Whale — Become the Whale.
+  
+                Market Mirror. Live on iOS. Next Week on Android! #Crypto #Trading #XRP
+                `}
+              mediaUrl="https://res.cloudinary.com/dpw1mj4zg/image/upload/v1779867134/700260688_18072864128671095_2321193982532100163_n_tmlggz.jpg"
+              mediaAlt="Reel preview"
+              timestamp="May 26, 2026"
+              views="12.4K"
+              likes={891}
+              comments={43}
+              reelUrl="https://www.instagram.com/reel/DYX-fAWS-0l/"
+            />
           </div>
 
         </div>
