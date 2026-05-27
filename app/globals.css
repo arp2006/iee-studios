@@ -1,15 +1,18 @@
 @import "tailwindcss";
 
+@theme {
+  --font-inter: var(--font-inter);
+}
+
 body {
   background: #000;
   color: #fff;
-  font-family: 'DM Sans', sans-serif;
   overflow-x: hidden;
 }
 
-.font-display {
+/* .font-display {
   font-family: 'Cormorant Garamond', serif;
-}
+} */
 
 /* Thin grain texture overlay */
 body::before {

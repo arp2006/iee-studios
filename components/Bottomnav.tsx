@@ -7,7 +7,7 @@ import { motion, useReducedMotion } from "framer-motion";
 const links = [
   { label: "About", href: "/about" },
   { label: "Projects", href: "/projects" },
-  { label: "Calendly", href: "https://calendly.com/iee-studios/30-mins-meeting" },
+  { label: "Book a call", href: "https://calendly.com/iee-studios/30-mins-meeting" },
 ];
 
 const EMAIL = "inspireelevateevovle@gmail.com";
