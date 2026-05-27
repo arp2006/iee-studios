@@ -48,20 +48,6 @@ export default function Work() {
             tweetUrl="https://x.com/Euphoria_fi/status/2054954998375535097"
           />
 
-          {/* Instagram — col 2, rows 1–2 */}
-          {/* <div
-            className="row-span-2 overflow-hidden flex items-start justify-center py-3"
-            data-lenis-prevent
-            dangerouslySetInnerHTML={{
-              __html: `
-              <blockquote
-                class="instagram-media"
-                data-instgrm-permalink="https://www.instagram.com/reel/DYX-fAWS-0l/?utm_source=ig_embed&utm_campaign=loading"
-                data-instgrm-version="14"
-                style="background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); width:100%; max-width:100%; min-width:0;">
-              </blockquote>
-            `}}
-          /> */}
           <InstagramReelCard
             author={{
               name: "MarketMirror",
@@ -95,7 +81,6 @@ export default function Work() {
             reelUrl="https://www.instagram.com/reel/DYX-fAWS-0l/"
           />
 
-          {/* Tweet 3 — col 3, row 1 */}
           <TweetCard
             author={{
               name: "Tirth",
@@ -114,7 +99,6 @@ export default function Work() {
             bookmarks={0}
             tweetUrl="https://x.com/madtirth/status/2038323701410844927"
           />
-          {/* Tweet 4 — col 3, row 2 */}
           
           <TweetCard
             author={{

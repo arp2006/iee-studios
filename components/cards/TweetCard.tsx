@@ -81,6 +81,7 @@ export default function TweetCard({
         maxWidth: "520px",
         width: "100%",
         boxSizing: "border-box",
+        overflow: "hidden",
       }}
     >
       {/* Header */}
@@ -139,6 +140,7 @@ export default function TweetCard({
           marginBottom: "12px",
           position: "relative",
           aspectRatio: "16 / 9",
+          maxHeight: "220px",
           flexShrink: 0,
         }}>
           <img
