@@ -26,8 +26,15 @@ export default function Work() {
   return (
     <section className="w-full flex justify-center bg-white py-10" >
       <div className="w-full max-w-[1420px]">
+        <div className="px-6 mb-8 flex flex-col justify-center items-center">
+          <h2 className="text-4xl font-semibold text-black">
+            Some of Our Work
+          </h2>
+          <p className="text-neutral-500 mt-2">
+            Click any launch to view it on X or Instagram.
+          </p>
+        </div>
         <div className="grid px-6 grid-cols-1 md:grid-cols-2 md:px-4 lg:grid-cols-4 grid-rows-1 gap-5 bg-white">
-
           {/* Tweet 1 — col 1, row 1 */}
           <TweetCard
             author={{
@@ -99,7 +106,7 @@ export default function Work() {
             bookmarks={0}
             tweetUrl="https://x.com/madtirth/status/2038323701410844927"
           />
-          
+
           <TweetCard
             author={{
               name: "Y Combinator",

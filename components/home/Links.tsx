@@ -33,7 +33,7 @@ const links = [
 
 export default function ExploreLinksSection() {
   return (
-    <section className="flex w-full items-center justify-center bg-white px-6 py-20">
+    <section className="flex w-full h-[56vh] tems-center justify-center bg-white px-6">
       <div className="flex flex-col items-center justify-center text-center">
         {links.map((link) => (
           <Link

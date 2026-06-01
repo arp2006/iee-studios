@@ -33,7 +33,6 @@ export default function Home() {
         {/* <Services /> */}
         <CurvedCarousel />
         <FAQ />
-        <Pricing />
         <ExploreLinksSection />
         <Footer />
       </div>
