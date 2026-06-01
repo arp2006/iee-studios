@@ -7,11 +7,11 @@ export default function About() {
       <div className="w-full max-w-[1420px] min-h-[80vh] flex items-center justify-center px-8 md:px-16">
 
         <div className="text-center w-full max-w-[802px] mx-auto px-6">
-          <h2 className="font-display tracking-[-0.03em] leading-tight text-black text-[clamp(1rem,1.7vw,1.7rem)] mx-auto">
+          <h2 className="font-display tracking-[-0.03em] leading-tight text-black text-[1.7rem] mx-auto">
             <span className="font-semibold">iee studios</span> produces and directs high-end
-            <br />
+            <br className="hidden sm:block" />
             launch films and videos for innovative
-            <br />
+            <br className="hidden sm:block" />
             tech and SaaS companies.
           </h2>
 
