@@ -35,19 +35,16 @@ export default function AboutPage() {
       <section className="min-h-screen w-full flex items-center justify-center bg-white px-6 md:px-12 lg:px-24 py-24">
         <div className={`${containerClass} flex flex-col justify-between gap-16`}>
 
-          <div>
-            <p className={labelClass}>About</p>
-
-            <h1 className="mt-6 text-3xl md:text-5xl lg:text-6xl leading-[0.92] tracking-tight max-w-4xl">
-              Videos that make you feel something in your chest
-            </h1>
-
-            <p className="mt-8 max-w-xl text-sm text-black/50 leading-relaxed">
-              iee studios is a multidisciplinary creative practice focused
-              on storytelling, motion and interactive systems.
-            </p>
-          </div>
-
+          <section className="relative flex h-[20vh] w-full items-center justify-center overflow-hidden">
+            <div className="relative z-10 max-w-5xl px-6 text-center">
+              <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
+                Videos that make you feel
+                <br />
+                something in your chest
+              </h1>
+            </div>
+          </section>
+               
           {/* PLACEHOLDER IMAGE */}
           <section className="w-full h-[70vh] bg-neutral-200 flex items-center justify-center overflow-hidden">
             <p className="text-black/20 text-[10px] uppercase tracking-[0.25em]">
@@ -66,7 +63,7 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h2 className="text-xl md:text-3xl leading-[1.05] tracking-tight max-w-2xl">
+            <h2 className="text-xl text-center md:text-3xl leading-[1.05] tracking-tight max-w-2xl">
               Good design creates feeling before explanation.
             </h2>
 
@@ -98,21 +95,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* BACKGROUND */}
-      <section className={sectionClass}>
-        <div className={`grid lg:grid-cols-2 gap-12 ${containerClass}`}>
-          <div className="lg:sticky lg:top-24 h-fit self-start">
-            <p className={labelClass}>Background</p>
-          </div>
-
-          <div className="flex items-center">
-            <p className="text-xl md:text-3xl leading-[1.15] tracking-tight max-w-3xl">
-              Since 2023, iee studios has collaborated with startups and
-              independent brands across launch films and digital experiences.
-            </p>
-          </div>
-        </div>
-      </section>
 
       {/* PROCESS */}
       <section className={sectionClass}>

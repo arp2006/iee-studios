@@ -11,7 +11,7 @@ const links = [
 ];
 
 const EMAIL = "inspireelevateevovle@gmail.com";
-const LOGO_W = 42;
+const LOGO_W = 40;
 const CONTACT_W = 80;
 const CONTACT_EXPANDED = 260;
 const cssEase = "cubic-bezier(0.4, 0, 0.2, 1)";
@@ -56,7 +56,7 @@ export default function BottomNav() {
   useEffect(() => {
     const activeEl = linkRefs.current[activeIndex];
     const containerEl = containerRef.current;
-    if (!activeEl || !containerEl) { setPillStyle(null); return; }
+    if (!activeEl || !containerEl) return; // ← don't null out, just bail
     const containerRect = containerEl.getBoundingClientRect();
     const elRect = activeEl.getBoundingClientRect();
     setPillStyle({ left: elRect.left - containerRect.left, width: elRect.width });
@@ -237,14 +237,31 @@ export default function BottomNav() {
         onClick={() => router.push("/")}
         onMouseEnter={onLogoEnter}
         onMouseLeave={onLogoLeave}
-        className="flex items-center justify-center bg-amber-400 rounded-full overflow-hidden cursor-pointer shrink-0"
-        style={{ width: logoHovered ? 100 : LOGO_W, height: 40, transition: `width ${DURATION}ms ${cssEase}` }}
+        className="flex items-center justify-center bg-black rounded-full overflow-hidden cursor-pointer shrink-0"
+        style={{
+          width: logoHovered ? 100 : 40,
+          height: 40,
+          padding: "0 16px",
+          transition: `width ${DURATION}ms ${cssEase}`,
+          boxSizing: "border-box",
+          whiteSpace: "nowrap",
+        }}
       >
-        <span
-          className="text-amber-900 font-semibold text-sm whitespace-nowrap"
-          style={{ opacity: logoHovered ? 1 : 0, transition: logoHovered ? "opacity 100ms ease 100ms" : "opacity 50ms ease" }}
-        >
-          iee studios
+        <span className="text-white font-medium text-sm flex items-center">
+          <span>iee</span>
+          <span
+            style={{
+              display: "inline-block",
+              maxWidth: logoHovered ? 80 : 0,
+              opacity: logoHovered ? 1 : 0,
+              overflow: "hidden",
+              transition: logoHovered
+                ? `max-width 1100ms ease, opacity 300ms ease 250ms`  // ← slower
+                : `max-width 500ms ease, opacity 100ms ease`,
+            }}
+          >
+            &nbsp;studios
+          </span>
         </span>
       </div>
 
@@ -264,7 +281,7 @@ export default function BottomNav() {
               width: pillStyle.width,
               background: "#171717",
               borderRadius: 9999,
-              transition: reduce ? "none" : `left 420ms cubic-bezier(0.76, 0, 0.24, 1), width 420ms cubic-bezier(0.76, 0, 0.24, 1)`,
+              transition: reduce ? "none" : `left 500ms cubic-bezier(0.76, 0, 0.24, 1), width 500ms cubic-bezier(0.76, 0, 0.24, 1)`,
               pointerEvents: "none",
               zIndex: 0,
             }}
@@ -317,7 +334,7 @@ export default function BottomNav() {
           style={{
             width: contactHovered ? CONTACT_EXPANDED : CONTACT_W,
             height: 40,
-            background: contactHovered ? "#FACC15" : "#171717",
+            background: contactHovered ? "#171717" : "#171717",
             transition: `width ${DURATION}ms ${cssEase}, background ${DURATION}ms ease`,
           }}
         >
@@ -331,13 +348,13 @@ export default function BottomNav() {
             className="flex items-center w-full gap-2"
             style={{ padding: "0 12px", opacity: contactHovered ? 1 : 0, transition: contactHovered ? "opacity 160ms ease 160ms" : "opacity 80ms ease" }}
           >
-            <span className="text-amber-900 text-sm font-medium flex-1 pl-1 whitespace-nowrap overflow-hidden text-ellipsis">{EMAIL}</span>
+            <span className="text-white text-sm font-medium flex-1 pl-1 whitespace-nowrap overflow-hidden ">{EMAIL}</span>
             <button
               onClick={handleCopy}
-              className="bg-white text-amber-900 text-xs font-semibold rounded-full shrink-0 cursor-pointer hover:bg-amber-50 transition-colors duration-100"
+              className="bg-white text-black text-xs font-semibold rounded-full shrink-0 cursor-pointer hover:bg-amber-50 transition-colors duration-100"
               style={{ padding: "6px 12px", border: "none" }}
             >
-              {copied ? "Copied!" : "Copy"}
+              {copied ? "Copied" : "Copy"}
             </button>
           </div>
         </div>

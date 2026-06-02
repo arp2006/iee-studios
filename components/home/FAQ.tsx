@@ -131,14 +131,14 @@ export default function FAQ() {
           {/* questions */}
           <div
             className={`absolute top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${active !== null
-                ? "left-0 w-1/2 text-left"
-                : "left-1/2 -translate-x-1/2"
+              ? "left-0 w-1/2 text-left"
+              : "left-1/2 -translate-x-1/2"
               }`}
           >
             {faqs.map((faq, index) => (
               <button
                 key={faq.question}
-                onClick={() => setActive(index)}
+                onClick={() => setActive(active === index ? null : index)}
                 className={`group py-6 transition-all duration-300 block w-full text-left ${active === index ? "opacity-100" : "opacity-40 hover:opacity-70"
                   }`}
               >
@@ -152,12 +152,15 @@ export default function FAQ() {
           {/* answer */}
           <div
             className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${active !== null
-                ? "opacity-100 translate-x-0"
-                : "opacity-0 translate-x-24 pointer-events-none"
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 translate-x-24 pointer-events-none"
               }`}
           >
             <div className="max-w-xl">
-              <p className="text-black/70 text-[clamp(0.8rem,1.2vw,1.2rem)] leading-relaxed font-light">
+              <p
+                key={active}
+                className="animate-fadeAnswer text-black/70 text-[clamp(0.8rem,1.2vw,1.2rem)] leading-relaxed font-light"
+              >
                 {active !== null ? faqs[active].answer : ""}
               </p>
             </div>
