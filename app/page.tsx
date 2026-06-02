@@ -8,6 +8,8 @@ import ExploreLinksSection from "@/components/home/Links";
 import Footer from "@/components/Footer";
 import FAQ from "@/components/home/FAQ";
 import CurvedCarousel from "@/components/home/CurvedCarousel"
+import ServicesCloud from "@/components/home/ServicesCloud";
+import ServicesSection from "@/components/home/ServiceSection";
 
 export default function Home() {
   return (
@@ -31,7 +33,9 @@ export default function Home() {
         <About />
         <Work />
         {/* <Services /> */}
-        <CurvedCarousel />
+        {/* <ServicesCloud /> */}
+        <ServicesSection />
+        {/* <CurvedCarousel /> */}
         <FAQ />
         <ExploreLinksSection />
         <Footer />
