@@ -118,7 +118,7 @@ export default function FAQ() {
 
   /* ── DESKTOP: original split layout ── */
   return (
-    <section className="w-full flex justify-center bg-white py-10 overflow-hidden">
+    <section className="w-full flex justify-center bg-white pb-10 overflow-hidden">
       <div className="w-full max-w-[1420px] min-h-[60vh] flex flex-col items-center justify-center">
         <div className="px-6 mb-8 flex flex-col justify-center items-center">
           <h2 className="text-4xl font-semibold text-black">

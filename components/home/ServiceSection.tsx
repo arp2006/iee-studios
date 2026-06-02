@@ -10,63 +10,56 @@ const services = [
   { title: "Branding", description: "The film ends; the identity doesn't. We build the part that stays.", baseAngle: -90 + (360 / 7) * 6 },
 ];
 
-const RADIUS = 36;
+const RADIUS = 42;
 const AUTO_SPEED = 0.010;
 const SCROLL_MULT = 0.01;
 const FRICTION = 0.90;
 const DEG_TO_RAD = Math.PI / 180;
 
-function getAnchorFactor(deg: number): [number, number] {
-  const n = ((deg % 360) + 360) % 360;
-  if (n > 200 && n < 340) return [-1, -0.5];
-  if (n >= 340 || n <= 20) return [-0.5, -1];
-  if (n > 20 && n <= 160) return [0, -0.5];
-  return [-0.5, 0];
-}
-
-// Precompute base angles in radians — never recompute inside rAF
+// Precompute base angles in radians
 const BASE_RADS = services.map(s => s.baseAngle * DEG_TO_RAD);
 
 export default function ServicesSection() {
   const [visible, setVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const sectionRef = useRef<HTMLDivElement>(null);
   const orbitRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>(services.map(() => null));
 
-  // All animation state in plain refs — zero React involvement during animation
   const rotRef = useRef(0);
   const velRef = useRef(0);
   const lastScrollY = useRef(0);
   const lastTime = useRef<number | null>(null);
   const rafRef = useRef<number | null>(null);
   const rPxRef = useRef(0);
-  const isVisible = useRef(false); // mirrors IntersectionObserver — pauses rAF when off-screen
-  const anchorPx = useRef<[number, number, number, number][]>(services.map(() => [0, 0, 0, 0]));
+  const isVisible = useRef(false);
   const anchorsReady = useRef(false);
+  // Store container width so tick can read it without layout thrash
+  const containerWRef = useRef(0);
 
-  // Measure anchors — called once after first paint and again after resize
+  // Detect mobile
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, []);
+
   const measureAnchors = () => {
-    services.forEach((svc, i) => {
-      const card = cardRefs.current[i];
-      if (!card) return;
-      const r = card.getBoundingClientRect();
-      const [fx, fy] = getAnchorFactor(svc.baseAngle);
-      // dot: center on orbit point; card: anchor corner
-      anchorPx.current[i] = [0, 0, fx * r.width, fy * r.height];
-    });
     anchorsReady.current = true;
   };
 
-  // Container size + anchors — one ResizeObserver, measured synchronously first
   useEffect(() => {
     const el = orbitRef.current;
     if (!el) return;
 
-    const updateSize = (w: number) => { rPxRef.current = (RADIUS / 100) * w; };
+    const updateSize = (w: number) => {
+      rPxRef.current = (RADIUS / 100) * w;
+      containerWRef.current = w;
+    };
     updateSize(el.getBoundingClientRect().width);
 
-    // Measure anchors after fonts/layout settle
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         measureAnchors();
@@ -75,14 +68,12 @@ export default function ServicesSection() {
 
     const ro = new ResizeObserver(([entry]) => {
       updateSize(entry.contentRect.width);
-      anchorsReady.current = false; // remeasure next frame
+      anchorsReady.current = false;
     });
     ro.observe(el);
     return () => ro.disconnect();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // IntersectionObserver — pause rAF when section is off-screen
   useEffect(() => {
     const el = sectionRef.current;
     if (!el) return;
@@ -90,7 +81,7 @@ export default function ServicesSection() {
       ([e]) => {
         isVisible.current = e.isIntersecting;
         if (e.isIntersecting) {
-          setVisible(true); // fade-in (one-time)
+          setVisible(true);
           if (!rafRef.current) {
             lastTime.current = null;
             rafRef.current = requestAnimationFrame(tick);
@@ -109,7 +100,6 @@ export default function ServicesSection() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Scroll → velocity (passive, no rAF involvement)
   useEffect(() => {
     lastScrollY.current = window.scrollY;
     const onScroll = () => {
@@ -121,34 +111,32 @@ export default function ServicesSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // rAF tick — defined outside useEffect so IntersectionObserver can reference it
   function tick(now: number) {
     if (lastTime.current === null) lastTime.current = now;
     const dt = Math.min(now - lastTime.current, 64);
     lastTime.current = now;
 
-    // Advance rotation
     rotRef.current += AUTO_SPEED * dt + velRef.current;
     velRef.current *= FRICTION;
 
-    // Measure anchors if needed (only after resize — 1 getBCR per card, one-time)
     if (!anchorsReady.current) measureAnchors();
 
     const rot = rotRef.current;
     const rPx = rPxRef.current;
+    const cw = containerWRef.current;
+
+    // Scale card anchor offset with container size so cards don't overlap on small screens
+    const ax = cw < 400 ? -28 : -45;
+    const ay = cw < 400 ? -28 : -40;
 
     for (let i = 0; i < services.length; i++) {
       const angle = BASE_RADS[i] + rot * DEG_TO_RAD;
       const cos = Math.cos(angle);
       const sin = Math.sin(angle);
       const ox = rPx * cos;
-      const oy = rPx * sin;
-      // const [, , ax, ay] = anchorPx.current[i];
-      const ax = -50;
-      const dist = Math.sqrt(ox * ox + oy * oy);
-      console.log(dist);
+      const oy = rPx * 0.7 * sin;
       const card = cardRefs.current[i];
-      if (card) card.style.transform = `translate(${ox + ax}px,${oy}px)`;
+      if (card) card.style.transform = `translate(${ox + ax}px,${oy + ay}px)`;
     }
 
     rafRef.current = requestAnimationFrame(tick);
@@ -157,13 +145,20 @@ export default function ServicesSection() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full min-h-screen bg-white flex items-center justify-center py-16 px-6"
+      className="relative w-full bg-white flex items-center justify-center pt-12 px-4 sm:px-6"
+      style={{ minHeight: isMobile ? "100vw" : "70vh" }}
     >
-      <div ref={orbitRef} className="relative w-[900px] aspect-square">
-
-        {/* Center — completely static, zero animation involvement */}
+      {/* Orbit container: shrinks on mobile, fixed on desktop */}
+      <div
+        ref={orbitRef}
+        className="relative aspect-square"
+        style={{
+          width: isMobile ? "min(92vw, 420px)" : "900px",
+        }}
+      >
+        {/* Center copy */}
         <div
-          className="absolute top-1/2 left-1/2 w-[44%] flex flex-col items-center gap-4 text-center z-10"
+          className="absolute top-1/2 left-1/2 w-full flex flex-col items-center gap-3 text-center"
           style={{
             transform: "translate(-50%, -50%)",
             opacity: visible ? 1 : 0,
@@ -171,32 +166,36 @@ export default function ServicesSection() {
           }}
         >
           <div className="leading-snug">
-            <span className="block text-[clamp(1.1rem,2.3vw,1.75rem)] font-semibold text-[#111] tracking-tight">
+            <span
+              className="block font-semibold text-[#111] tracking-tight"
+              style={{ fontSize: isMobile ? "clamp(0.9rem,4vw,1.1rem)" : "clamp(1.7rem,2.6vw,2.2rem)" }}
+            >
               Each story we tell teaches
               <br />
               us the next one
             </span>
           </div>
-          <button className="text-[0.7rem] tracking-widest text-[#111] underline underline-offset-4 hover:opacity-40 transition-opacity">
+          <button
+            className="text-[#111] underline underline-offset-4 hover:opacity-40 transition-opacity"
+            style={{ fontSize: isMobile ? "0.55rem" : "0.7rem", letterSpacing: "0.1em" }}
+          >
             Work with us →
           </button>
-          <p className="text-[clamp(0.56rem,1.05vw,0.65rem)] font-light text-[#999] leading-relaxed">
-            everything we've ever made is in the room when we make yours.
-            that's what taste is — not a mood board, not a reference folder.
-            it's years of decisions that already happened so yours doesn't
-            have to feel like a guess.
-          </p>
+
         </div>
 
+        {/* Service cards */}
         {services.map((svc, i) => {
           const fadeDelay = 0.08 + i * 0.07;
           return (
             <div key={i}>
               <div
                 ref={(el) => { cardRefs.current[i] = el; }}
-                className="absolute max-w-[130px] flex flex-col gap-[4px]"
+                className="absolute flex flex-col gap-[3px]"
                 style={{
-                  top: "50%", left: "50%",
+                  top: "50%",
+                  left: "50%",
+                  maxWidth: isMobile ? "72px" : "130px",
                   textAlign: "left",
                   transform: "translate(0px,0px)",
                   opacity: visible ? 1 : 0,
@@ -204,10 +203,16 @@ export default function ServicesSection() {
                   willChange: "transform",
                 }}
               >
-                <h3 className="text-[clamp(0.68rem,1.35vw,0.86rem)] leading-tight tracking-tight font-semibold text-[#111]">
+                <h3
+                  className="leading-tight tracking-tight font-semibold text-[#111]"
+                  style={{ fontSize: isMobile ? "clamp(0.46rem,2.1vw,0.58rem)" : "clamp(0.68rem,1.35vw,1rem)" }}
+                >
                   {svc.title}
                 </h3>
-                <p className="text-[clamp(0.5rem,0.9vw,0.6rem)] font-light text-[#c0c0c0] leading-relaxed">
+                <p
+                  className="font-light text-[#c0c0c0] leading-relaxed"
+                  style={{ fontSize: isMobile ? "clamp(0.38rem,1.6vw,0.5rem)" : "clamp(0.6rem,0.9vw,0.7rem)" }}
+                >
                   {svc.description}
                 </p>
               </div>
