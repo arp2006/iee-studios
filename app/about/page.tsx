@@ -40,7 +40,7 @@ export default function AboutPage() {
               <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
                 Videos that make you feel
                 <br />
-                something in your chest
+                something in your chest.
               </h1>
             </div>
           </section>

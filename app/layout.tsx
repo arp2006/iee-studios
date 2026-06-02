@@ -6,8 +6,8 @@ import { NavTransition, PageTransition } from "../components/utilities/Pagetrans
 import Bottomnav from "../components/Bottomnav";
 
 export const metadata: Metadata = {
-  title: "iee studios",
-  description: "We craft brands and digital experiences that move people.",
+  title: "iee studios | Building cinematic digital experiences",
+  description: "We ship Videos that make you feel something in your chest.",
 };
 
 const inter = Inter({
