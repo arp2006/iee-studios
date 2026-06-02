@@ -5,7 +5,7 @@ import About from "@/components/home/About";
 import Work from "@/components/home/Work";
 import Pricing from "@/components/home/Pricing";
 import ExploreLinksSection from "@/components/home/Links";
-import Footer from "@/components/Footer";
+import Footer from "@/components/home/Footer";
 import FAQ from "@/components/home/FAQ";
 import CurvedCarousel from "@/components/home/CurvedCarousel"
 import ServicesCloud from "@/components/home/ServicesCloud";

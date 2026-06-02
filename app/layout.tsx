@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SmoothScroll from "../components/utilities/Smoothscroll";
 import { NavTransition, PageTransition } from "../components/utilities/Pagetransition";
-import Bottomnav from "../components/Bottomnav";
+import Bottomnav from "../components/layout/Bottomnav";
 
 export const metadata: Metadata = {
   title: "iee studios | Building cinematic digital experiences",
