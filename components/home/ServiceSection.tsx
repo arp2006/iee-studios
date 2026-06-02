@@ -1,33 +1,26 @@
 import { useEffect, useRef, useState } from "react";
 
 const services = [
-  { title: "Video Editing",      description: "Years of cutting have taught us what most editors never learn — when to leave it alone.", baseAngle: -90 },
-  { title: "Creative Direction", description: "One vision holds the whole thing together. We've spent long enough to trust ours.",        baseAngle: -90 + 360 / 7 },
-  { title: "Motion Graphics",    description: "Every element moves because it has somewhere to be, not because it can.",                  baseAngle: -90 + (360 / 7) * 2 },
-  { title: "Storyboard",         description: "The film exists before the film exists. We just make sure it's the right one.",            baseAngle: -90 + (360 / 7) * 3 },
-  { title: "Sound Engineering",  description: "What you hear is half of what you feel. We treat it that way.",                            baseAngle: -90 + (360 / 7) * 4 },
-  { title: "Script Writing",     description: "Every word either earns its place or loses it. We've gotten fast at knowing which.",       baseAngle: -90 + (360 / 7) * 5 },
-  { title: "Branding",           description: "The film ends; the identity doesn't. We build the part that stays.",                       baseAngle: -90 + (360 / 7) * 6 },
+  { title: "Video Editing", description: "Years of cutting have taught us what most editors never learn — when to leave it alone.", baseAngle: -90 },
+  { title: "Creative Direction", description: "One vision holds the whole thing together. We've spent long enough to trust ours.", baseAngle: -90 + 360 / 7 },
+  { title: "Motion Graphics", description: "Every element moves because it has somewhere to be, not because it can.", baseAngle: -90 + (360 / 7) * 2 },
+  { title: "Storyboard", description: "The film exists before the film exists. We just make sure it's the right one.", baseAngle: -90 + (360 / 7) * 3 },
+  { title: "Sound Engineering", description: "What you hear is half of what you feel. We treat it that way.", baseAngle: -90 + (360 / 7) * 4 },
+  { title: "Script Writing", description: "Every word either earns its place or loses it. We've gotten fast at knowing which.", baseAngle: -90 + (360 / 7) * 5 },
+  { title: "Branding", description: "The film ends; the identity doesn't. We build the part that stays.", baseAngle: -90 + (360 / 7) * 6 },
 ];
 
-const RADIUS      = 36;
-const AUTO_SPEED  = 0.010;
+const RADIUS = 36;
+const AUTO_SPEED = 0.010;
 const SCROLL_MULT = 0.01;
-const FRICTION    = 0.90;
-const DEG_TO_RAD  = Math.PI / 180;
-
-function getTextAlign(deg: number) {
-  const n = ((deg % 360) + 360) % 360;
-  if (n > 200 && n < 340) return "right" as const;
-  if (n > 20  && n <= 160) return "left"  as const;
-  return "center" as const;
-}
+const FRICTION = 0.90;
+const DEG_TO_RAD = Math.PI / 180;
 
 function getAnchorFactor(deg: number): [number, number] {
   const n = ((deg % 360) + 360) % 360;
-  if (n > 200 && n < 340) return [-1,   -0.5];
-  if (n >= 340 || n <= 20) return [-0.5, -1 ];
-  if (n > 20  && n <= 160) return [0,   -0.5];
+  if (n > 200 && n < 340) return [-1, -0.5];
+  if (n >= 340 || n <= 20) return [-0.5, -1];
+  if (n > 20 && n <= 160) return [0, -0.5];
   return [-0.5, 0];
 }
 
@@ -37,19 +30,19 @@ const BASE_RADS = services.map(s => s.baseAngle * DEG_TO_RAD);
 export default function ServicesSection() {
   const [visible, setVisible] = useState(false);
 
-  const sectionRef  = useRef<HTMLDivElement>(null);
-  const orbitRef    = useRef<HTMLDivElement>(null);
-  const cardRefs    = useRef<(HTMLDivElement | null)[]>(services.map(() => null));
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const orbitRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>(services.map(() => null));
 
   // All animation state in plain refs — zero React involvement during animation
-  const rotRef      = useRef(0);
-  const velRef      = useRef(0);
+  const rotRef = useRef(0);
+  const velRef = useRef(0);
   const lastScrollY = useRef(0);
-  const lastTime    = useRef<number | null>(null);
-  const rafRef      = useRef<number | null>(null);
-  const rPxRef      = useRef(0);
-  const isVisible   = useRef(false); // mirrors IntersectionObserver — pauses rAF when off-screen
-  const anchorPx    = useRef<[number, number, number, number][]>(services.map(() => [0,0,0,0]));
+  const lastTime = useRef<number | null>(null);
+  const rafRef = useRef<number | null>(null);
+  const rPxRef = useRef(0);
+  const isVisible = useRef(false); // mirrors IntersectionObserver — pauses rAF when off-screen
+  const anchorPx = useRef<[number, number, number, number][]>(services.map(() => [0, 0, 0, 0]));
   const anchorsReady = useRef(false);
 
   // Measure anchors — called once after first paint and again after resize
@@ -86,7 +79,7 @@ export default function ServicesSection() {
     });
     ro.observe(el);
     return () => ro.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // IntersectionObserver — pause rAF when section is off-screen
@@ -113,7 +106,7 @@ export default function ServicesSection() {
     );
     obs.observe(el);
     return () => obs.disconnect();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Scroll → velocity (passive, no rAF involvement)
@@ -146,14 +139,16 @@ export default function ServicesSection() {
 
     for (let i = 0; i < services.length; i++) {
       const angle = BASE_RADS[i] + rot * DEG_TO_RAD;
-      const cos   = Math.cos(angle);
-      const sin   = Math.sin(angle);
-      const ox    = rPx * cos;
-      const oy    = rPx * sin;
-      const [,, ax, ay] = anchorPx.current[i];
-
+      const cos = Math.cos(angle);
+      const sin = Math.sin(angle);
+      const ox = rPx * cos;
+      const oy = rPx * sin;
+      // const [, , ax, ay] = anchorPx.current[i];
+      const ax = -50;
+      const dist = Math.sqrt(ox * ox + oy * oy);
+      console.log(dist);
       const card = cardRefs.current[i];
-      if (card) card.style.transform = `translate(${ox + ax}px,${oy + ay}px)`;
+      if (card) card.style.transform = `translate(${ox + ax}px,${oy}px)`;
     }
 
     rafRef.current = requestAnimationFrame(tick);
@@ -164,7 +159,7 @@ export default function ServicesSection() {
       ref={sectionRef}
       className="relative w-full min-h-screen bg-white flex items-center justify-center py-16 px-6"
     >
-      <div ref={orbitRef} className="relative w-[min(680px,90vw)] aspect-square">
+      <div ref={orbitRef} className="relative w-[900px] aspect-square">
 
         {/* Center — completely static, zero animation involvement */}
         <div
@@ -178,8 +173,7 @@ export default function ServicesSection() {
           <div className="leading-snug">
             <span className="block text-[clamp(1.1rem,2.3vw,1.75rem)] font-semibold text-[#111] tracking-tight">
               Each story we tell teaches
-            </span>
-            <span className="block text-[clamp(1.1rem,2.3vw,1.75rem)] font-light text-[#aaa] tracking-tight">
+              <br />
               us the next one
             </span>
           </div>
@@ -203,7 +197,7 @@ export default function ServicesSection() {
                 className="absolute max-w-[130px] flex flex-col gap-[4px]"
                 style={{
                   top: "50%", left: "50%",
-                  textAlign: getTextAlign(svc.baseAngle),
+                  textAlign: "left",
                   transform: "translate(0px,0px)",
                   opacity: visible ? 1 : 0,
                   transition: `opacity 0.7s ease ${fadeDelay}s`,
