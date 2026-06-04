@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Footer from "../../components/home/Footer";
+import Footer from "../../components/layout/Footer";
 import TweetCard from "@/components/cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
 

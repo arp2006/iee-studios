@@ -1,4 +1,4 @@
-import Footer from "../../components/home/Footer";
+import Footer from "../../components/layout/Footer";
 
 export default function AboutPage() {
   const capabilities = [
