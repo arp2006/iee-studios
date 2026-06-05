@@ -122,7 +122,7 @@ export default function FAQ() {
       <div className="w-full max-w-[1420px] min-h-[60vh] flex flex-col items-center justify-center">
         <div className="px-6 mb-8 flex flex-col justify-center items-center">
           <h2 className="text-4xl font-semibold text-black">
-            Fequently asked
+            Frequently asked
           </h2>
         </div>
 

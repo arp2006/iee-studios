@@ -27,7 +27,7 @@ const links = [
   {
     first: "Our",
     highlight: "twitter",
-    href: "https://twitter.com",
+    href: "https://x.com/madtirth",
   },
 ];
 

@@ -56,7 +56,10 @@ export default function BottomNav() {
   useEffect(() => {
     const activeEl = linkRefs.current[activeIndex];
     const containerEl = containerRef.current;
-    if (!activeEl || !containerEl) return; // ← don't null out, just bail
+    if (!activeEl || !containerEl) {
+      setPillStyle(null); // clear pill when on home (no active link)
+      return;
+    }
     const containerRect = containerEl.getBoundingClientRect();
     const elRect = activeEl.getBoundingClientRect();
     setPillStyle({ left: elRect.left - containerRect.left, width: elRect.width });

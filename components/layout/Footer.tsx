@@ -35,11 +35,11 @@ export default function Footer({
             {/* CONTACT LINKS — stack on mobile, row on desktop */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 text-sm text-black/50">
               <a
-                href="mailto:inspireelevateevovle@gmail.com"
+                href="mailto:inspireelevateevolve@gmail.com"
                 className="flex items-center gap-2 hover:text-black transition break-all"
               >
                 <HiOutlineMail className="text-[16px] shrink-0" />
-                <span>inspireelevateevovle@gmail.com</span>
+                <span>inspireelevateevolve@gmail.com</span>
               </a>
 
               <span className="hidden sm:block text-black/20">·</span>
