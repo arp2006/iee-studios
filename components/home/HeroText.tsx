@@ -7,7 +7,7 @@ const words = ["I need", "the damn video", "and", "text"]
 export default function HeroText() {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-      <h1 className="text-5xl font-medium flex flex-wrap gap-x-4 justify-center">
+      <h1 className="text-[20px] gap-x-2 font-medium flex flex-wrap md:text-5xl md:gap-x-4 justify-center">
         {words.map((word, i) => (
           <motion.span
             key={i}
