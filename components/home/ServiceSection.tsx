@@ -147,7 +147,7 @@ export default function ServicesSection() {
   return (
     <div
       ref={sectionRef}
-      className="relative w-full bg-white flex items-center justify-center pt-12 px-4 sm:px-6"
+      className="relative w-full bg-white flex items-center justify-center py-12 px-4 sm:px-6"
       style={{ minHeight: isMobile ? "100vw" : "70vh" }}
     >
       {/* Orbit container: shrinks on mobile, fixed on desktop */}
@@ -177,12 +177,15 @@ export default function ServicesSection() {
               us the next one
             </span>
           </div>
-          <button
+          <a
+            href="https://calendly.com/iee-studios/30-mins-meeting"
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-[#111] underline underline-offset-4 hover:opacity-40 transition-opacity"
-            style={{ fontSize: isMobile ? "0.55rem" : "0.7rem", letterSpacing: "0.1em" }}
+            style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}
           >
-            Work with us →
-          </button>
+            View all works →
+          </a>
 
         </div>
 

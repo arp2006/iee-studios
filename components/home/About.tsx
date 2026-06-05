@@ -72,7 +72,7 @@ export default function About() {
             <p
               ref={topRef}
               style={{ willChange: "transform, opacity" }}
-              className="text-[#414040] text-base md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
+              className="text-[#414040] text-justify text-base md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
             >
               we don't believe in mediocre stuff, any company can launch a video
               with generic saas animation videos and campaigns with no direction
@@ -82,7 +82,7 @@ export default function About() {
             <p
               ref={bottomRef}
               style={{ willChange: "transform, opacity" }}
-              className="text-[#414040] text-base md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
+              className="text-[#414040] text-justify md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
             >
               We partner with brands and companies to creatively launch and
               position their product into the market / mass we make stuff that

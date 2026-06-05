@@ -250,7 +250,7 @@ export default function BottomNav() {
           whiteSpace: "nowrap",
         }}
       >
-        <span className="text-white font-medium text-sm flex items-center">
+        <span className="text-white font-medium text-sm flex items-center pb-0.5">
           <span>iee</span>
           <span
             style={{

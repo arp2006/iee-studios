@@ -33,7 +33,7 @@ const links = [
 
 export default function ExploreLinksSection() {
   return (
-    <section className="flex w-full h-[56vh] tems-center justify-center bg-white px-6">
+    <section className="flex w-full h-[55vh] tems-center justify-center bg-white px-6">
       <div className="flex flex-col items-center justify-center text-center">
         {links.map((link) => (
           <Link
@@ -42,26 +42,26 @@ export default function ExploreLinksSection() {
             target={link.href.startsWith("http") ? "_blank" : "_self"}
             className="group py-2"
           >
-            <h2 className="text-[clamp(1.2rem,1.8vw,1.7rem)] font-medium leading-[1] tracking-[-0.05em] text-black">
+            <h2 className="text-[clamp(1.2rem,1.8vw,1.7rem)] font-medium leading-[1] tracking-[-0.05em] text-black lowercase">
               {link.first && (
-                <span className="inline-block transition-all duration-300 group-hover:-translate-x-2">
+                <span className="inline-block transition-all duration-300 group-hover:-translate-x-2 lowercase">
                   {link.first}
                 </span>
               )}
 
               <span
-                className={`relative inline-block text-[1.6em] leading-none transition-all duration-300 group-hover:scale-110 ${link.noOffset
+                className={`relative inline-block text-[1.6em] leading-none transition-all duration-300 group-hover:scale-110 lowercase ${link.noOffset
                     ? "ml-0 group-hover:ml-0"
                     : "ml-2 group-hover:ml-4"
                   }`}
               >
                 {link.highlight}
 
-                <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
+                <span className="absolute bottom-0 left-0 h-[3px] w-0 bg-black transition-all duration-300 group-hover:w-full lowercase" />
               </span>
 
               {link.suffix && (
-                <span className="ml-2 inline-block">
+                <span className="ml-2 inline-block lowercase">
                   {link.suffix}
                 </span>
               )}

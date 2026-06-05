@@ -27,10 +27,6 @@ export default function Home() {
           playsInline
         />
         <div className="absolute inset-0 bg-black/0" />
-        {/* <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
-          <h1 className="text-5xl font-bold drop-shadow-lg">Your Headline</h1>
-          <p className="mt-4 text-xl text-white/80">A short supporting line here</p>
-        </div> */}
         <HeroText />
       </div>
 

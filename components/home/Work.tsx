@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import TweetCard from "../cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
+import Link from "next/link";
 
 export default function Work() {
   useEffect(() => {
@@ -24,7 +25,7 @@ export default function Work() {
   }, []);
 
   return (
-    <section className="w-full flex justify-center bg-white py-10" >
+    <section className="w-full flex justify-center bg-white py-13" >
       <div className="w-full max-w-[1420px]">
         <div className="px-6 mb-8 flex flex-col justify-center items-center">
           <h2 className="text-4xl font-semibold text-black">
@@ -126,6 +127,15 @@ export default function Work() {
             tweetUrl="https://x.com/ycombinator/status/2054018731479589362"
           />
 
+        </div>
+        <div className="w-full flex flex-col items-end pt-4 px-6">
+          <Link
+            href="/projects"
+            className="text-[#111] underline underline-offset-4 hover:opacity-40 transition-opacity"
+            style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}
+          >
+            View all works →
+          </Link>
         </div>
       </div>
     </section>
