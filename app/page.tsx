@@ -12,7 +12,7 @@ import ServicesCloud from "@/components/home/ServicesCloud";
 import ServicesSection from "@/components/home/ServiceSection";
 import HeroText from "@/components/home/HeroText";
 
-const HERO_ANIMATION_DURATION = 2700 // ms — last word finishes at ~2.65s
+const HERO_ANIMATION_DURATION = 4150 // ms — last word finishes at ~2.65s
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)

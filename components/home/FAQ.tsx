@@ -90,6 +90,12 @@ function AccordionItem({
 export default function FAQ() {
   const [active, setActive] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
+  const prevActive = useRef<number | null>(null);
+  const handleSetActive = (index: number) => {
+    prevActive.current = active;
+    setActive(active === index ? null : index);
+  };
+  const displayedAnswer = active !== null ? active : prevActive.current;
 
   useEffect(() => {
     const check = () => setIsMobile(window.innerWidth < 768);
@@ -138,7 +144,9 @@ export default function FAQ() {
             {faqs.map((faq, index) => (
               <button
                 key={faq.question}
-                onClick={() => setActive(active === index ? null : index)}
+
+                onClick={() => handleSetActive(index)}
+
                 className={`group py-6 transition-all duration-300 block w-full text-left ${active === index ? "opacity-100" : "opacity-40 hover:opacity-70"
                   }`}
               >
@@ -158,10 +166,10 @@ export default function FAQ() {
           >
             <div className="max-w-xl">
               <p
-                key={active}
+                key={displayedAnswer}
                 className="animate-fadeAnswer text-black/70 text-[clamp(0.8rem,1.2vw,1.2rem)] leading-relaxed font-light"
               >
-                {active !== null ? faqs[active].answer : ""}
+                {displayedAnswer !== null ? faqs[displayedAnswer].answer : ""}
               </p>
             </div>
           </div>

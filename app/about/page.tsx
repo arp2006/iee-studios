@@ -38,7 +38,7 @@ export default function AboutPage() {
           <section className="relative flex h-[20vh] w-full items-center justify-center overflow-hidden">
             <div className="relative z-10 max-w-5xl px-6 text-center">
               <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
-                Videos that make you feel
+                We make you feel
                 <br />
                 something in your chest.
               </h1>
