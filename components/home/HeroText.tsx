@@ -2,7 +2,8 @@
 
 import { motion } from "framer-motion"
 
-const words = ["I need", "the damn video", "and", "text"]
+// const words = ["I need", "the damn video", "and", "text"]
+const words = ["Videos that", "make you feel", "something", "in your", "chest."]
 
 export default function HeroText() {
   return (
@@ -15,7 +16,7 @@ export default function HeroText() {
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
             transition={{
               delay: 0.25 + i * 0.35,
-              duration: 1.5,
+              duration: 1,
               ease: "easeOut",
             }}
           >

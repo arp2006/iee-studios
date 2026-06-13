@@ -184,7 +184,7 @@ export default function ServicesSection() {
             className="text-[#111] underline underline-offset-4 hover:opacity-40 transition-opacity"
             style={{ fontSize: "0.7rem", letterSpacing: "0.1em" }}
           >
-            View all works →
+            Book a call →
           </a>
 
         </div>
