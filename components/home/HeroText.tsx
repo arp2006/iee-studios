@@ -3,7 +3,7 @@
 import { motion } from "framer-motion"
 
 // const words = ["I need", "the damn video", "and", "text"]
-const words = ["We", "make you", "feel", "something", "in your", "chest."]
+const words = ["Videos that", "make you", "feel", "something", "in your", "chest."]
 
 export default function HeroText() {
   return (
