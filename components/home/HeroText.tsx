@@ -2,8 +2,20 @@
 
 import { motion } from "framer-motion"
 
-// const words = ["I need", "the damn video", "and", "text"]
-const words = ["Videos that", "make you", "feel", "something", "in your", "chest."]
+const words = ["Videos", "that", "make", "you", "feel", "something", "in", "your", "chest."]
+
+// Hand-tuned pacing: slow intro, quick middle build, slow dramatic landing
+const timing = [
+  { delay: 0.25, duration: 1.4 }, // Videos
+  { delay: 0.85, duration: 1.4 }, // that        (slow gap from "Videos")
+  { delay: 1.35, duration: 0.9 }, // make         (gap shrinks)
+  { delay: 1.55, duration: 0.9 }, // you          (fast)
+  { delay: 1.75, duration: 0.9 }, // feel         (fast)
+  { delay: 1.95, duration: 0.9 }, // something    (fast)
+  { delay: 2.15, duration: 0.9 }, // in your      (fast)
+  { delay: 2.25, duration: 0.9 }, // in your      (fast)
+  { delay: 2.85, duration: 1.6 }, // chest.       (long pause, slow lingering blur-in)
+]
 
 export default function HeroText() {
   return (
@@ -12,13 +24,13 @@ export default function HeroText() {
         {words.map((word, i) => (
           <motion.span
             key={i}
-            className="font-light tracking-[-0.8%] "
+            className="font-light tracking-[-0.8%]"
             style={{ color: "white", mixBlendMode: "difference" }}
             initial={{ opacity: 0, filter: "blur(6px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{
-              delay: 0.25 + i * 0.5,
-              duration: 1.4,
+              delay: timing[i].delay,
+              duration: timing[i].duration,
               ease: "easeOut",
             }}
           >
