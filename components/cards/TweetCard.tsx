@@ -223,29 +223,3 @@ export default function TweetCard({
     </a>
   );
 }
-
-// Example usage / demo
-export function TweetCardDemo() {
-  return (
-    <div style={{ padding: "40px", display: "flex", justifyContent: "center", fontFamily: "sans-serif" }}>
-      <TweetCard
-        author={{
-          name: "Shensi Ding",
-          handle: "shensi",
-          avatarUrl: "https://pbs.twimg.com/profile_images/2012242313796259840/Q2fxc9nv_bigger.jpg",
-          verified: true,
-        }}
-        content={`Introducing Merge Gateway - Build Your Own Router.\n\nYou're three sprints into your coding assistant. You pick the most hyped model, integrate, test, deploy. A month later, a new model drops. Now you re-test, re-integrate, re-deploy. Your product didn't change, but the`}
-        mediaUrl="https://ycjvjlkxkfopguxymwci.supabase.co/storage/v1/object/public/directory-thumbnails/homepage/955963ad-ebbc-4ba6-9671-faa7339fe6bf/6c400405-c501-49a1-aa1f-ad582a0c3276.jpg"
-        mediaAlt="Launch preview"
-        timestamp="7:00 AM · May 26, 2026"
-        views="2.6M"
-        replies={160}
-        retweets={495}
-        likes={1600}
-        bookmarks={1100}
-        tweetUrl="https://x.com/shensi/status/2059273388871516650"
-      />
-    </div>
-  );
-}

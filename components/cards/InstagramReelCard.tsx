@@ -249,27 +249,3 @@ export default function InstagramReelCard({
     </a>
   );
 }
-
-// Demo
-export function InstagramReelCardDemo() {
-  return (
-    <div style={{ padding: "40px", display: "flex", justifyContent: "center", fontFamily: "sans-serif" }}>
-      <InstagramReelCard
-        author={{
-          name: "IEE Studios",
-          handle: "iee.studios",
-          avatarUrl: "https://placekitten.com/100/100",
-          verified: true,
-        }}
-        caption="New reel just dropped 🎬"
-        mediaUrl="https://placekitten.com/460/816"
-        mediaAlt="Reel preview"
-        timestamp="May 26, 2026"
-        views="12.4K"
-        likes={891}
-        comments={43}
-        reelUrl="https://www.instagram.com/reel/DYX-fAWS-0l/"
-      />
-    </div>
-  );
-}

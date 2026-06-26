@@ -102,7 +102,6 @@ export default function BottomNav() {
     transition: { duration: 0.55, ease: [0.76, 0, 0.24, 1] as const },
   };
 
-  /* ── MOBILE ── */
   if (isMobile) {
     return (
       <>
@@ -229,7 +228,6 @@ export default function BottomNav() {
     );
   }
 
-  /* ── DESKTOP ── */
   return (
     <motion.nav
       className="fixed bottom-5 left-1/2 -translate-x-1/2 z-[9999] flex items-center gap-4"

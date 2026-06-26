@@ -5,8 +5,6 @@ import Footer from "../../components/layout/Footer";
 import TweetCard from "@/components/cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
 
-// ─── Data ────────────────────────────────────────────────────────────────────
-
 const tweetProjects = [
   {
     author: { name: "Euphoria", handle: "Euphoria_fi", avatarUrl: "https://pbs.twimg.com/profile_images/1878617867756744704/Eu_uhVHP_400x400.jpg", verified: true },
@@ -68,8 +66,6 @@ const reelProjects = [
     reelUrl: "https://www.instagram.com/reel/DYX-fAWS-0l/",
   },
 ];
-
-// ─── Page ─────────────────────────────────────────────────────────────────────
 
 export default function Projects() {
   useEffect(() => {

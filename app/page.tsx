@@ -3,16 +3,13 @@
 import { useRef, useEffect } from "react"
 import About from "@/components/home/About";
 import Work from "@/components/home/Work";
-import Pricing from "@/components/home/Pricing";
 import ExploreLinksSection from "@/components/home/Links";
 import Footer from "@/components/layout/Footer";
 import FAQ from "@/components/home/FAQ";
-import CurvedCarousel from "@/components/home/CurvedCarousel"
-import ServicesCloud from "@/components/home/ServicesCloud";
 import ServicesSection from "@/components/home/ServiceSection";
 import HeroText from "@/components/home/HeroText";
 
-const HERO_ANIMATION_DURATION = 4150 // ms — last word finishes at ~2.65s
+const HERO_ANIMATION_DURATION = 4150
 
 export default function Home() {
   const videoRef = useRef<HTMLVideoElement>(null)

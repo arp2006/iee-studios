@@ -104,7 +104,6 @@ export default function FAQ() {
     return () => window.removeEventListener("resize", check);
   }, []);
 
-  /* ── MOBILE: accordion ── */
   if (isMobile) {
     return (
       <section className="w-full bg-white py-10 px-6">
@@ -122,7 +121,6 @@ export default function FAQ() {
     );
   }
 
-  /* ── DESKTOP: original split layout ── */
   return (
     <section className="w-full flex justify-center bg-white pb-10 overflow-hidden">
       <div className="w-full max-w-[1420px] min-h-[55vh] flex flex-col items-center justify-center">

@@ -18,7 +18,6 @@ const SCROLL_MULT = 0.01;
 const FRICTION = 0.90;
 const DEG_TO_RAD = Math.PI / 180;
 
-// Precompute base angles in radians
 const BASE_RADS = services.map(s => s.baseAngle * DEG_TO_RAD);
 
 export default function ServicesSection() {
@@ -127,7 +126,6 @@ export default function ServicesSection() {
     const rPx = rPxRef.current;
     const cw = containerWRef.current;
 
-    // Scale card anchor offset with container size so cards don't overlap on small screens
     const ax = cw < 400 ? -28 : -45;
     const ay = cw < 400 ? -28 : -40;
 
@@ -150,7 +148,6 @@ export default function ServicesSection() {
       className="relative w-full bg-white flex items-center justify-center py-12 px-4 sm:px-6"
       style={{ minHeight: isMobile ? "100vw" : "70vh" }}
     >
-      {/* Orbit container: shrinks on mobile, fixed on desktop */}
       <div
         ref={orbitRef}
         className="relative aspect-square"
