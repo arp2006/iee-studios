@@ -6,7 +6,7 @@ import { NavTransition, PageTransition } from "../components/utilities/Pagetrans
 import Bottomnav from "../components/layout/Bottomnav";
 
 export const metadata: Metadata = {
-  title: "iee studios | Building cinematic digital experiences",
+  title: "iee studios",
   description: "We ship Videos that make you feel something in your chest.",
 };
 
