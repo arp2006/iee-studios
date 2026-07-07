@@ -26,7 +26,7 @@ export default function AboutPage() {
   const containerClass = "w-full max-w-[1420px]";
 
   const labelClass =
-    "text-[10px] uppercase tracking-[0.25em] text-black/30";
+    "text-[15px] uppercase tracking-[0.25em] text-black/30";
 
   return (
     <main className="bg-white text-black min-h-screen">
@@ -50,13 +50,14 @@ export default function AboutPage() {
           </div>
 
           <div className="flex flex-col justify-center">
-            <h2 className="text-xl text-center md:text-3xl leading-[1.05] tracking-tight max-w-2xl">
-              Good design creates feeling before explanation.
+            <h2 className="text-xl text-start md:text-3xl leading-[1.05] tracking-tight max-w-2xl">
+              We belive in producing art 
             </h2>
 
             <p className="mt-6 text-sm text-black/50 leading-relaxed max-w-xl">
-              Every project begins with narrative, pacing, atmosphere and
-              restraint.
+              Regular promotional content gets seen. Meaningful work gets remembered.
+              <br />
+              The goal is to make the audience feel something in their chest, an emotion that naturally resonates with your product.
             </p>
           </div>
         </div>
@@ -118,8 +119,7 @@ export default function AboutPage() {
 
           <div className="flex items-center">
             <p className="text-sm leading-relaxed text-black/50 max-w-xl">
-              Inspired by cinema, architecture, ambient sound design and quiet
-              interfaces.
+              We were always inspired by cinema, art and abstract using our philosophy and marketing background we pivoted into launch films
             </p>
           </div>
         </div>
