@@ -25,14 +25,36 @@ body::before {
   opacity: 0.35;
 }
 
-::-webkit-scrollbar { width: 2px; }
-::-webkit-scrollbar-track { background: #000; }
-::-webkit-scrollbar-thumb { background: #2a2a2a; }
+/* Chrome, Edge, Safari */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f2f2f2;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #666;
+    border-radius: 999px;
+    border: 2px solid #f2f2f2;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #444;
+}
+
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: #666 #f2f2f2;
+}
 
 @keyframes fadeAnswer {
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
