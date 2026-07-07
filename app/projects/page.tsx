@@ -71,8 +71,8 @@ const collaborations = [
     content: `For thousands of years, people have had opinions.\n\nBut they've never been able to monetize them.\n\nUntil now.\n\nStart questing: http://pov.co`,
     mediaUrl: "https://pbs.twimg.com/amplify_video_thumb/2067656017819623424/img/KKySPcXqGcoKO3_c.jpg",
     timestamp: "10:40 PM · Jun 18, 2026",
-    views: "264.5K", replies: "10k", retweets: "6.1K", likes: "10K", bookmarks: 171,
-    tweetUrl: "https://x.com/Euphoria_fi/status/2054954998375535097",
+    views: "264.5K", replies: 10000, retweets: 6100, likes: 10000, bookmarks: 171,
+    tweetUrl: "https://x.com/POVMarket/status/2067656214964531632",
   },
 ]
 
