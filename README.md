@@ -1,4 +1,4 @@
-# IEE Studios
+# iee studios
 
 A creative agency website built for **IEE Studios**, focused on visual storytelling and lead generation.
 
