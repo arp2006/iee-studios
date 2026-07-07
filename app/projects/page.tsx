@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Footer from "../../components/layout/Footer";
 import TweetCard from "@/components/cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
+import LinkedInPostCard from "@/components/cards/LinkedinPostCard";
 
 const tweetProjects = [
   {
@@ -39,6 +40,14 @@ const tweetProjects = [
     tweetUrl: "https://x.com/ycombinator/status/2054018731479589362",
   },
   {
+    author: { name: "CrowdReply", handle: "Crowdreply_io", avatarUrl: "https://pbs.twimg.com/profile_images/2032162693382021120/4lcUTHh8_400x400.jpg", verified: true },
+    content: `We've been cooking something...\n\nAnd you're about to meet her. 🪄\n\nTuesday, May 26.`,
+    mediaUrl: "https://pbs.twimg.com/amplify_video_thumb/2064363313048477696/img/gTTUduvQKGwwB5ZX.jpg",
+    timestamp: "8:37 PM · Jun 9, 2026",
+    views: "1.6M", replies: 96, retweets: 117, likes: 288, bookmarks: 286,
+    tweetUrl: "https://x.com/Crowdreply_io/status/2064363868437258473",
+  },
+  {
     author: { name: "Tirth", handle: "madtirth", avatarUrl: "https://pbs.twimg.com/profile_images/2055001661287067648/iYFi418S_400x400.jpg", verified: true },
     content: `What peak taste and creativity feel like for a launch promo`,
     mediaUrl: "https://pbs.twimg.com/amplify_video_thumb/2051581686539046912/img/W-taOgEIAOlVSx2r.jpg",
@@ -56,6 +65,17 @@ const tweetProjects = [
   },
 ];
 
+const collaborations = [
+  {
+    author: { name: "POV", handle: "POVMarket", avatarUrl: "https://pbs.twimg.com/profile_images/2047048607250132992/6TouI1Pm_400x400.jpg", verified: true },
+    content: `For thousands of years, people have had opinions.\n\nBut they've never been able to monetize them.\n\nUntil now.\n\nStart questing: http://pov.co`,
+    mediaUrl: "https://pbs.twimg.com/amplify_video_thumb/2067656017819623424/img/KKySPcXqGcoKO3_c.jpg",
+    timestamp: "10:40 PM · Jun 18, 2026",
+    views: "264.5K", replies: "10k", retweets: "6.1K", likes: "10K", bookmarks: 171,
+    tweetUrl: "https://x.com/Euphoria_fi/status/2054954998375535097",
+  },
+]
+
 const reelProjects = [
   {
     author: { name: "MarketMirror", handle: "marketmirror", avatarUrl: "https://pbs.twimg.com/profile_images/2047479335326736384/2xm5mMmH_400x400.jpg", verified: true },
@@ -65,6 +85,28 @@ const reelProjects = [
     views: "12.4K", likes: 891, comments: 43,
     reelUrl: "https://www.instagram.com/reel/DYX-fAWS-0l/",
   },
+];
+
+const linkedinPosts = [
+  {
+    author: {
+      name: "Lanesurf",
+      headline: "4726 Followers",
+      avatarUrl:
+        "https://ysucykflidgcxqtvnmmr.supabase.co/storage/v1/object/public/images/lane_surf_logo.jpg",
+      verified: false,
+    },
+    content: `Every carrier on your lane is about to get a call, email, and text RIGHT NOW — until someone books it.\n\nJK 😀\n\nLanesurf just launched auto-outbound. See live: https://www.lanesurf.com/`,
+    mediaUrl:
+      "https://ysucykflidgcxqtvnmmr.supabase.co/storage/v1/object/public/images/lane_surf_thumb_1.jpg",
+    mediaAlt: "Video thumbnail",
+    timestamp: "1:05",
+    reactions: 10,
+    comments: 1,
+    reposts: 2,
+    postUrl: "https://linkedin.com/posts/janedoe_...",
+  },
+  // add more posts here — each one renders as its own card
 ];
 
 export default function Projects() {
@@ -106,10 +148,23 @@ export default function Projects() {
       <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-[1420px]">
           <div className="mb-14">
-            <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Twitter Campaigns</h2>
+            <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">X Campaigns</h2>
           </div>
           <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
             {tweetProjects.map((project) => (
+              <TweetCard key={project.tweetUrl} mediaAlt="Launch preview" {...project} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+       <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
+        <div className="mx-auto w-full max-w-[1420px]">
+          <div className="mb-14">
+            <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Collaborations</h2>
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
+            {collaborations.map((project) => (
               <TweetCard key={project.tweetUrl} mediaAlt="Launch preview" {...project} />
             ))}
           </div>
@@ -120,11 +175,14 @@ export default function Projects() {
       <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
         <div className="mx-auto w-full max-w-[1420px]">
           <div className="mb-14">
-            <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Instagram Campaigns</h2>
+            <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Other Campaigns</h2>
           </div>
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
             {reelProjects.map((project) => (
               <InstagramReelCard key={project.reelUrl} mediaAlt="Reel preview" {...project} />
+            ))}
+            {linkedinPosts.map((post) => (
+              <LinkedInPostCard key={post.postUrl} {...post} />
             ))}
           </div>
         </div>

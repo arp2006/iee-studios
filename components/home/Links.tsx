@@ -16,13 +16,8 @@ const links = [
   {
     highlight: "Contact",
     suffix: "us",
-    href: "/contact",
-    noOffset: true,
-  },
-  {
-    first: "Book a",
-    highlight: "call",
     href: "https://calendly.com/iee-studios/30-mins-meeting",
+    noOffset: true,
   },
   {
     first: "Our",
