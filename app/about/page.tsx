@@ -31,29 +31,16 @@ export default function AboutPage() {
   return (
     <main className="bg-white text-black min-h-screen">
 
-      {/* HERO + IMAGE */}
-      <section className="min-h-screen w-full flex items-center justify-center bg-white px-6 md:px-12 lg:px-24 py-24">
-        <div className={`${containerClass} flex flex-col justify-between gap-16`}>
-
-          <section className="relative flex h-[20vh] w-full items-center justify-center overflow-hidden">
-            <div className="relative z-10 max-w-5xl px-6 text-center">
-              <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
-                We make you feel
-                <br />
-                something in your chest.
-              </h1>
-            </div>
-          </section>
-               
-          {/* PLACEHOLDER IMAGE */}
-          <section className="w-full h-[70vh] bg-neutral-200 flex items-center justify-center overflow-hidden">
-            <p className="text-black/20 text-[10px] uppercase tracking-[0.25em]">
-              Placeholder Visual
-            </p>
-          </section>
-
+      <section className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden">
+        <div className="relative z-10 max-w-5xl px-6 text-center">
+          <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
+            We make you feel
+            <br />
+            something in your chest.
+          </h1>
         </div>
       </section>
+
 
       {/* PHILOSOPHY */}
       <section className={sectionClass}>
