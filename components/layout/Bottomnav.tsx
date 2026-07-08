@@ -10,7 +10,7 @@ const links = [
   { label: "Book a call", href: "https://calendly.com/iee-studios/30-mins-meeting" },
 ];
 
-const EMAIL = "inspireelevateevovle@gmail.com";
+const EMAIL = "tirth@iee.studio";
 const LOGO_W = 40;
 const CONTACT_W = 80;
 const CONTACT_EXPANDED = 260;
