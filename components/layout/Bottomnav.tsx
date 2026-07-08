@@ -335,13 +335,18 @@ export default function BottomNav() {
           style={{
             width: contactHovered ? CONTACT_EXPANDED : CONTACT_W,
             height: 40,
-            background: contactHovered ? "#171717" : "#171717",
+            background: "#171717",
             transition: `width ${DURATION}ms ${cssEase}, background ${DURATION}ms ease`,
           }}
         >
           <span
             className="absolute inset-0 flex items-center justify-center text-sm font-medium text-white whitespace-nowrap pointer-events-none"
-            style={{ opacity: contactHovered ? 0 : 1, transition: "opacity 120ms ease" }}
+            style={{
+              opacity: contactHovered ? 0 : 1,
+              transition: contactHovered
+                ? "opacity 120ms ease"
+                : "opacity 250ms ease 100ms", // fade "Contact" back in slightly after email fades out
+            }}
           >
             Contact
           </span>
