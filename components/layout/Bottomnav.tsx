@@ -13,7 +13,7 @@ const links = [
 const EMAIL = "tirth@iee.studio";
 const LOGO_W = 40;
 const CONTACT_W = 80;
-const CONTACT_EXPANDED = 260;
+const CONTACT_EXPANDED = 191;
 const cssEase = "cubic-bezier(0.4, 0, 0.2, 1)";
 const DURATION = 700;
 
