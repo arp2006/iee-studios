@@ -199,9 +199,11 @@ export default function BottomNav() {
         >
           <div
             onClick={() => router.push("/")}
-            className="flex items-center justify-center bg-amber-400 rounded-full cursor-pointer shrink-0"
+            className="flex items-center justify-center bg-black rounded-full cursor-pointer shrink-0"
             style={{ width: LOGO_W, height: 40 }}
-          />
+          >
+            <span className="text-white text-sm font-medium">iee</span>
+          </div>
           <button
             data-sheet-trigger
             onClick={() => setSheetOpen(v => !v)}
