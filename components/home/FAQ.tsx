@@ -131,47 +131,42 @@ export default function FAQ() {
         </div>
 
         <div className="relative w-full min-h-[200px] overflow-hidden">
-
-          {/* questions */}
+          {/* single row that shifts as a whole */}
           <div
-            className={`absolute top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] ${active !== null
-              ? "left-0 w-1/2 text-left"
-              : "left-1/2 -translate-x-1/2"
+            className={`flex w-full transition-transform duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] transform-gpu ${active !== null ? "translate-x-0" : "translate-x-[25%]"
               }`}
           >
-            {faqs.map((faq, index) => (
-              <button
-                key={faq.question}
+            {/* questions — always w-1/2, never toggles width */}
+            <div className="w-1/2 flex flex-col justify-center">
+              {faqs.map((faq, index) => (
+                <button
+                  key={faq.question}
+                  onClick={() => handleSetActive(index)}
+                  className={`group py-6 transition-opacity duration-300 block w-full text-left ${active === index ? "opacity-100" : "opacity-40 hover:opacity-70"
+                    }`}
+                >
+                  <h3 className="text-[clamp(1.2rem,1.8vw,1.7rem)] font-light tracking-[-0.02em] text-black">
+                    {faq.question}
+                  </h3>
+                </button>
+              ))}
+            </div>
 
-                onClick={() => handleSetActive(index)}
-
-                className={`group py-6 transition-all duration-300 block w-full text-left ${active === index ? "opacity-100" : "opacity-40 hover:opacity-70"
-                  }`}
-              >
-                <h3 className="text-[clamp(1.2rem,1.8vw,1.7rem)] font-light tracking-[-0.02em] text-black">
-                  {faq.question}
-                </h3>
-              </button>
-            ))}
-          </div>
-
-          {/* answer */}
-          <div
-            className={`absolute right-0 top-1/2 -translate-y-1/2 transition-all duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] text-justify ${active !== null
-              ? "opacity-100 translate-x-0"
-              : "opacity-0 translate-x-24 pointer-events-none"
-              }`}
-          >
-            <div className="max-w-xl">
-              <p
-                key={displayedAnswer}
-                className="animate-fadeAnswer text-black/70 text-[clamp(0.8rem,1.2vw,1.2rem)] leading-relaxed font-light"
-              >
-                {displayedAnswer !== null ? faqs[displayedAnswer].answer : ""}
-              </p>
+            {/* answer — always w-1/2, only opacity animates */}
+            <div
+              className={`w-1/2 flex items-center transition-opacity duration-700 ease-[cubic-bezier(0.76,0,0.24,1)] text-justify ${active !== null ? "opacity-100" : "opacity-0 pointer-events-none"
+                }`}
+            >
+              <div className="max-w-xl">
+                <p
+                  key={displayedAnswer}
+                  className="animate-fadeAnswer text-black/70 text-[clamp(0.8rem,1.2vw,1.2rem)] leading-relaxed font-light"
+                >
+                  {displayedAnswer !== null ? faqs[displayedAnswer].answer : ""}
+                </p>
+              </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
