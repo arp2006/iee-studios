@@ -21,7 +21,7 @@ export default function AboutPage() {
   ];
 
   const sectionClass =
-    "min-h-[80vh] px-6 md:px-12 lg:px-24 py-32 w-full flex items-center justify-center bg-white";
+    "min-h-[80vh] px-6 md:px-12 lg:px-24 md:py-32 w-full flex items-center justify-center bg-white";
 
   const containerClass = "w-full max-w-[1420px]";
 

@@ -17,7 +17,7 @@ const timing = [
   { delay: 2.85, duration: 1.6 }, // chest.       (long pause, slow lingering blur-in)
 ]
 
-export default function HeroText() {
+export default function HeroText({ start }: { start: boolean }) {
   return (
     <div className="absolute inset-0 flex flex-col items-center justify-center text-white text-center px-4">
       <h1 className="text-[20px] gap-x-2 font-medium flex flex-wrap md:text-[40px] md:gap-x-3 justify-center">
