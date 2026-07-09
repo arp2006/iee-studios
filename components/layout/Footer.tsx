@@ -59,7 +59,7 @@ export default function Footer({
 
           {/* RIGHT */}
           <div className="text-[12px] text-black/30">
-            © 2026 IEE Studios
+            © 2026 iee studios
           </div>
 
         </div>

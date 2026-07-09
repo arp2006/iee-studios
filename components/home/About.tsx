@@ -58,7 +58,7 @@ export default function About() {
       <div className="w-full max-w-[1420px] min-h-[80vh] flex items-center justify-center px-5 sm:px-8 md:px-16">
         <div className="text-center w-full max-w-[802px] mx-auto px-6">
           <div ref={headingRef} style={{ willChange: "transform" }}>
-            <h2 className="md:w-[646px] mx-auto text-[20px] sm:text-[30px] md:text-4xl leading-[1.1] tracking-[-0.7px] text-black">
+            <h2 className="md:w-[646px] mx-auto text-[23px] sm:text-[30px] md:text-4xl leading-[1.1] tracking-[-0.7px] text-black">
               <span className="font-bold tracking-[-1.08px]">iee studios</span>{" "}
               produces and directs high-end launch films and videos for innovative
               tech and saas companies.
@@ -72,7 +72,7 @@ export default function About() {
             <p
               ref={topRef}
               style={{ willChange: "transform, opacity" }}
-              className="text-[#414040] text-justify text-base md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
+              className="text-[#414040] text-justify text-[18px] md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
             >
               we don't believe in mediocre stuff, any company can launch a video
               with generic saas animation videos and campaigns with no direction
@@ -82,7 +82,7 @@ export default function About() {
             <p
               ref={bottomRef}
               style={{ willChange: "transform, opacity" }}
-              className="text-[#414040] text-justify md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
+              className="text-[#414040] text-justify  text-[18px] md:text-xl lowercase tracking-[-0.6px] leading-[100.25%]"
             >
               We partner with brands and companies to creatively launch and
               position their product into the market / mass we make stuff that

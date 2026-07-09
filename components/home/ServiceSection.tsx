@@ -207,13 +207,13 @@ export default function ServicesSection() {
               >
                 <h3
                   className="leading-tight tracking-tight font-semibold text-[#111]"
-                  style={{ fontSize: isMobile ? "clamp(0.46rem,2.1vw,0.58rem)" : "clamp(0.68rem,1.35vw,1rem)" }}
+                  style={{ fontSize: isMobile ? "clamp(0.67rem,2.8vw,0.8rem)" : "clamp(0.68rem,1.35vw,1rem)" }}
                 >
                   {svc.title}
                 </h3>
                 <p
                   className="font-light text-[#c0c0c0] leading-relaxed"
-                  style={{ fontSize: isMobile ? "clamp(0.38rem,1.6vw,0.5rem)" : "clamp(0.6rem,0.9vw,0.7rem)" }}
+                  style={{ fontSize: isMobile ? "clamp(0.38rem,1.95vw,0.5rem)" : "clamp(0.6rem,0.9vw,0.7rem)" }}
                 >
                   {svc.description}
                 </p>
