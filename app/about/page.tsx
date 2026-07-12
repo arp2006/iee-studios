@@ -51,7 +51,7 @@ export default function AboutPage() {
 
           <div className="flex flex-col justify-center">
             <h2 className="text-xl text-start md:text-3xl leading-[1.05] tracking-tight max-w-2xl">
-              We belive in producing art 
+              We believe in producing art 
             </h2>
 
             <p className="mt-6 text-sm text-black/50 leading-relaxed max-w-xl">
