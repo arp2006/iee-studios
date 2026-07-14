@@ -44,7 +44,8 @@ export default function Home() {
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          src="https://ysucykflidgcxqtvnmmr.supabase.co/storage/v1/object/public/videos/iee-studios-hero-video.mp4"
+          // src="https://ysucykflidgcxqtvnmmr.supabase.co/storage/v1/object/public/videos/iee-studios-hero-video.mp4"
+          src="https://res.cloudinary.com/dpw1mj4zg/video/upload/v1783993230/iee-studios-hero-video_czuw3n.mp4"
           muted
           loop
           playsInline
