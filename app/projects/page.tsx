@@ -134,7 +134,7 @@ export default function Projects() {
     <main className="bg-white text-black">
 
       {/* Hero */}
-      <section className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden">
+      <section className="relative flex h-[80vh] w-full items-center justify-center overflow-hidden max-w-[1420px] mx-auto">
         <div className="relative z-10 max-w-5xl px-6 text-center">
           <h1 className="text-4xl leading-[0.9] tracking-[-0.05em] text-black md:text-6xl lg:text-7xl">
             Building cinematic
@@ -145,7 +145,7 @@ export default function Projects() {
       </section>
 
       {/* Twitter Campaigns */}
-      <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
+      <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-0 max-w-[1420px] mx-auto">
         <div className="mx-auto w-full max-w-[1420px]">
           <div className="mb-14">
             <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">X Campaigns</h2>
@@ -158,7 +158,7 @@ export default function Projects() {
         </div>
       </section>
 
-       <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
+      <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-0 max-w-[1420px] mx-auto">
         <div className="mx-auto w-full max-w-[1420px]">
           <div className="mb-14">
             <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Collaborations</h2>
@@ -171,8 +171,7 @@ export default function Projects() {
         </div>
       </section>
 
-      {/* Instagram Campaigns */}
-      <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-24">
+      <section className="w-full bg-white px-6 py-20 md:px-12 lg:px-0 max-w-[1420px] mx-auto">
         <div className="mx-auto w-full max-w-[1420px]">
           <div className="mb-14">
             <h2 className="text-3xl tracking-[-0.05em] md:text-5xl">Other Campaigns</h2>
