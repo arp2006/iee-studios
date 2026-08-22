@@ -11,7 +11,7 @@ export default function Footer({
 }) {
   return (
     <footer id="contact" className="w-full flex justify-center bg-white">
-      <div className="w-full max-w-[1420px] px-6 md:px-0">
+      <div className="w-full max-w-[1420px] bg-white px-6 py-20 md:px-12 lg:px-24">
 
         <div className="pb-12 md:pb-20 flex flex-col md:flex-row md:items-end md:justify-between gap-8 md:gap-10">
 
