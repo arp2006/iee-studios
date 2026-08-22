@@ -13,6 +13,7 @@ export const metadata: Metadata = {
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -27,7 +28,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         
       </head>
-      <body className={`${inter.variable} bg-black text-white antialiased`}>
+      <body className={`${inter.variable} ${inter.className} font-sans bg-black text-white antialiased`}>
         <SmoothScroll />
         <NavTransition>
           <Bottomnav />
