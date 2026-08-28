@@ -40,16 +40,26 @@ export default function Home() {
     <main className="bg-white">
 
       {/* ── STICKY HERO VIDEO ── */}
-      <div className="sticky top-0 h-screen z-0 overflow-hidden">
+      <div 
+        className="sticky top-0 h-screen z-0 overflow-hidden"
+        style={{ transform: "translateZ(0)", WebkitTransform: "translateZ(0)", willChange: "transform" }}
+      >
         <video
           ref={videoRef}
           className="absolute inset-0 w-full h-full object-cover"
-          // src="https://ysucykflidgcxqtvnmmr.supabase.co/storage/v1/object/public/videos/iee-studios-hero-video.mp4"
-          src="https://res.cloudinary.com/dpw1mj4zg/video/upload/v1783993230/iee-studios-hero-video_czuw3n.mp4"
+          src="https://res.cloudinary.com/dpw1mj4zg/video/upload/f_auto,q_auto/v1783993230/iee-studios-hero-video_czuw3n.mp4"
           muted
           loop
           playsInline
-          // No autoPlay — we control it manually
+          autoPlay
+          preload="auto"
+          style={{ 
+            transform: "translateZ(0)", 
+            WebkitTransform: "translateZ(0)", 
+            willChange: "transform",
+            WebkitBackfaceVisibility: "hidden",
+            backfaceVisibility: "hidden"
+          }}
         />
         <div className="absolute inset-0 bg-black/0" />
         <HeroText />

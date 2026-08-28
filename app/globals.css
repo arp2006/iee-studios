@@ -25,6 +25,10 @@ body::before {
   pointer-events: none;
   z-index: 9999;
   opacity: 0.35;
+  will-change: transform;
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  isolation: isolate;
 }
 
 /* Chrome, Edge, Safari */

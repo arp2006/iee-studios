@@ -25,7 +25,12 @@ export default function HeroText() {
           <motion.span
             key={i}
             className="font-light tracking-[-0.8%]"
-            style={{ color: "white", mixBlendMode: "difference" }}
+            style={{ 
+              color: "white", 
+              mixBlendMode: "difference",
+              transform: "translateZ(0)",
+              willChange: "transform, opacity, filter"
+            }}
             initial={{ opacity: 0, filter: "blur(6px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{
