@@ -28,10 +28,7 @@ export default function About() {
       const p = raw < 0.5 ? 2 * raw * raw : -1 + (4 - 2 * raw) * raw;
 
       const offset = MAX_OFFSET * (1 - p);
-      const opacity = 0.2 + 0.8 * p;   // ← was 0.5 + 0.5 * p
-
-      top.style.transform = `translateY(${offset}px)`;   // ← was -offset
-      bot.style.transform = `translateY(${offset}px)`;   // ← was +offset
+      // const opacity = 0.2 + 0.8 * p;   // ← was 0.5 + 0.5 * p
 
       // inside update()
       const heading = headingRef.current;

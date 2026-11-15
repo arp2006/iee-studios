@@ -28,7 +28,7 @@ const links = [
 
 export default function ExploreLinksSection() {
   return (
-    <section className="flex w-full h-[55vh] tems-center justify-center bg-white px-6">
+    <section className="flex w-full h-[55vh] items-center justify-center bg-white px-6">
       <div className="flex flex-col items-center justify-center text-center">
         {links.map((link) => (
           <Link

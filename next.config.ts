@@ -9,7 +9,13 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "ycjvjlkxkfopguxymwci.supabase.co",
+        // Active Supabase bucket (avatars & media used in LinkedInPostCard / projects page)
+        hostname: "ysucykflidgcxqtvnmmr.supabase.co",
+      },
+      {
+        protocol: "https",
+        // Cloudinary (hero video thumbnail, Instagram reel covers)
+        hostname: "res.cloudinary.com",
       },
     ],
   },

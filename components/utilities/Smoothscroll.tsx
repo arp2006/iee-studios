@@ -28,6 +28,16 @@ export default function SmoothScroll() {
     document.addEventListener("mouseover", handleMouseEnter);
     document.addEventListener("mouseout", handleMouseLeave);
 
+    // Pause the RAF loop when the tab is hidden to avoid wasted work
+    function handleVisibilityChange() {
+      if (document.hidden) {
+        lenis.stop();
+      } else {
+        lenis.start();
+      }
+    }
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -39,6 +49,7 @@ export default function SmoothScroll() {
       cancelAnimationFrame(rafId);
       document.removeEventListener("mouseover", handleMouseEnter);
       document.removeEventListener("mouseout", handleMouseLeave);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       lenis.destroy();
     };
   }, []);

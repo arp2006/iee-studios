@@ -89,6 +89,15 @@ export default function BottomNav() {
   const leaveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const contactEnterTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  // Clear all hover timers on unmount to avoid state updates on a dead component
+  useEffect(() => {
+    return () => {
+      if (logoTimer.current) clearTimeout(logoTimer.current);
+      if (leaveTimer.current) clearTimeout(leaveTimer.current);
+      if (contactEnterTimer.current) clearTimeout(contactEnterTimer.current);
+    };
+  }, []);
+
   const onLogoEnter = () => { logoTimer.current = setTimeout(() => setLogoHovered(true), 200); };
   const onLogoLeave = () => { if (logoTimer.current) clearTimeout(logoTimer.current); setLogoHovered(false); };
   const onContactEnter = () => { if (leaveTimer.current) clearTimeout(leaveTimer.current); contactEnterTimer.current = setTimeout(() => setContactHovered(true), 200); };

@@ -1,30 +1,14 @@
 "use client";
 
-import { useEffect } from "react";
 import TweetCard from "../cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
 import Link from "next/link";
+import Script from "next/script";
 
 export default function Work() {
-  useEffect(() => {
-    const twitterScript = document.createElement("script");
-    twitterScript.src = "https://platform.twitter.com/widgets.js";
-    twitterScript.async = true;
-    twitterScript.charset = "utf-8";
-    document.body.appendChild(twitterScript);
-
-    const igScript = document.createElement("script");
-    igScript.src = "https://www.instagram.com/embed.js";
-    igScript.async = true;
-    document.body.appendChild(igScript);
-
-    return () => {
-      document.body.removeChild(twitterScript);
-      document.body.removeChild(igScript);
-    };
-  }, []);
 
   return (
+    <>
     <section className="w-full flex justify-center bg-white py-13" >
       <div className="w-full max-w-[1420px]">
         <div className="px-6 mb-8 flex flex-col justify-center items-center">
@@ -139,5 +123,8 @@ export default function Work() {
         </div>
       </div>
     </section>
+    <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
+    <Script src="https://www.instagram.com/embed.js" strategy="lazyOnload" />
+  </>
   );
 }

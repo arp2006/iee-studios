@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect } from "react";
 import Footer from "../../components/layout/Footer";
 import TweetCard from "@/components/cards/TweetCard";
 import InstagramReelCard from "@/components/cards/InstagramReelCard";
 import LinkedInPostCard from "@/components/cards/LinkedinPostCard";
+import Script from "next/script";
 
 const tweetProjects = [
   {
@@ -110,27 +110,8 @@ const linkedinPosts = [
 ];
 
 export default function Projects() {
-  useEffect(() => {
-    const twitterScript = Object.assign(document.createElement("script"), {
-      src: "https://platform.twitter.com/widgets.js",
-      async: true,
-      charset: "utf-8",
-    });
-    const igScript = Object.assign(document.createElement("script"), {
-      src: "https://www.instagram.com/embed.js",
-      async: true,
-    });
-
-    document.body.appendChild(twitterScript);
-    document.body.appendChild(igScript);
-
-    return () => {
-      document.body.removeChild(twitterScript);
-      document.body.removeChild(igScript);
-    };
-  }, []);
-
   return (
+    <>
     <main className="bg-white text-black">
 
       {/* Hero */}
@@ -189,5 +170,8 @@ export default function Projects() {
 
       <Footer />
     </main>
+    <Script src="https://platform.twitter.com/widgets.js" strategy="lazyOnload" />
+    <Script src="https://www.instagram.com/embed.js" strategy="lazyOnload" />
+    </>
   );
 }
