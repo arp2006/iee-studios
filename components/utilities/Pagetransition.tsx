@@ -4,9 +4,19 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { usePathname } from "next/navigation";
 
 const variants = {
-  hidden: { opacity: 0, y: 18 },
-  enter:  { opacity: 1, y: 0 },
-  exit:   { opacity: 0, y: -12 },
+  // Safari WebKit fix: animating both opacity AND transform (y) on a parent
+  // that contains filter:blur() children prevents WebKit from GPU-promoting
+  // the children into their own compositing layers. The result is the entire
+  // subtree paints on the CPU during the transition — which is exactly why
+  // the hero text blur-in is slow/missing on macOS and iOS.
+  //
+  // Keeping only opacity on the parent lets WebKit independently composite
+  // each child's filter animation on the GPU, while the parent fades in
+  // normally. The y movement is removed; the blur-in on the words provides
+  // more than enough motion to sell the entrance.
+  hidden: { opacity: 0 },
+  enter:  { opacity: 1 },
+  exit:   { opacity: 0 },
 };
 
 export function NavTransition({ children }: { children: React.ReactNode }) {
@@ -27,7 +37,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
         initial="hidden"
         animate="enter"
         exit="exit"
-        transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+        transition={{ duration: 0.45, ease: [0.76, 0, 0.24, 1] }}
       >
         {children}
       </motion.div>
